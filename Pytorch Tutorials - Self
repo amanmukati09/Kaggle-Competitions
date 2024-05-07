@@ -1,1 +1,4601 @@
-{"metadata":{"kernelspec":{"language":"python","display_name":"Python 3","name":"python3"},"language_info":{"name":"python","version":"3.10.13","mimetype":"text/x-python","codemirror_mode":{"name":"ipython","version":3},"pygments_lexer":"ipython3","nbconvert_exporter":"python","file_extension":".py"},"kaggle":{"accelerator":"none","dataSources":[],"dockerImageVersionId":30698,"isInternetEnabled":true,"language":"python","sourceType":"notebook","isGpuEnabled":false}},"nbformat_minor":4,"nbformat":4,"cells":[{"cell_type":"markdown","source":"# PYTORCH TUTORIALS","metadata":{}},{"cell_type":"markdown","source":" #### Artificial intelligence (AI) is the simulation of human intelligence processes by machines, especially computer systems. It involves the development of AI algorithms, modeled after the decision-making processes of the human brain, that can “learn” from available data and make increasingly more accurate classifications or predictions over time. AI is an umbrella term that encompasses a wide variety of technologies, including machine learning, deep learning, and natural language processing (NLP).","metadata":{}},{"cell_type":"markdown","source":"#### Machine Learning (ML): ML is a subset of AI that focuses on developing algorithms and statistical models that enable machines to learn from data without being explicitly programmed. ML is a type of AI that allows systems to improve their performance on a task over time, based on the data they receive.\n\n#### Deep Learning (DL): DL is a subset of ML that uses neural networks, which are modeled after the human brain, to analyze and interpret data. DL algorithms can learn to recognize patterns and make predictions by processing large amounts of data. DL is particularly effective for tasks such as image and speech recognition, natural language processing, and game playing.","metadata":{}},{"cell_type":"markdown","source":"**Supervised Learning: In supervised learning, the machine is trained on a set of labeled data, where the input data is paired with the desired output. The machine learns to predict the output for new input data by finding the relationship between the input and output data. The goal of supervised learning is to learn a function that can accurately map inputs to outputs. This approach is useful for tasks such as image classification, speech recognition, and sentiment analysis.**\n\n**Unsupervised Learning: In unsupervised learning, the machine is trained on a set of unlabeled data, and it must find patterns or structure in the data on its own. The machine learns to group similar data points together or identify clusters, without any prior knowledge of the expected output. This approach is useful for tasks such as anomaly detection, clustering, and dimensionality reduction.**","metadata":{}},{"cell_type":"markdown","source":"**Reinforcement Learning (RL) is a machine learning (ML) technique that teaches software to make decisions to achieve a goal by interacting with an environment. It's similar to how humans learn through trial and error.**","metadata":{}},{"cell_type":"markdown","source":"### What is Pytorch ?","metadata":{}},{"cell_type":"markdown","source":"### PyTorch is a machine learning library based on the Torch library, used for applications such as computer vision and natural language processing.\n### Pytorch is an open-source deep learning framework available with a Python and C++ interface.","metadata":{}},{"cell_type":"markdown","source":"### Tensor : Tensors are the fundamental data structure of PyTorch. They are n-dimensional arrays that can be used to represent data such as images, audio, and text. Tensors can also be used to store the parameters of a machine learning model.","metadata":{}},{"cell_type":"markdown","source":"### Lets start :-","metadata":{}},{"cell_type":"code","source":"import torch\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt","metadata":{"execution":{"iopub.status.busy":"2024-05-07T07:50:47.327301Z","iopub.execute_input":"2024-05-07T07:50:47.329471Z","iopub.status.idle":"2024-05-07T07:50:47.744364Z","shell.execute_reply.started":"2024-05-07T07:50:47.329411Z","shell.execute_reply":"2024-05-07T07:50:47.743263Z"},"trusted":true},"execution_count":2,"outputs":[]},{"cell_type":"code","source":"torch.__version__","metadata":{"execution":{"iopub.status.busy":"2024-05-07T07:51:00.240621Z","iopub.execute_input":"2024-05-07T07:51:00.240985Z","iopub.status.idle":"2024-05-07T07:51:00.248105Z","shell.execute_reply.started":"2024-05-07T07:51:00.240960Z","shell.execute_reply":"2024-05-07T07:51:00.247078Z"},"trusted":true},"execution_count":3,"outputs":[{"execution_count":3,"output_type":"execute_result","data":{"text/plain":"'2.1.2+cpu'"},"metadata":{}}]},{"cell_type":"markdown","source":"#### Tensor is a multi-dimensional matrix containing elements of single DataType. float,double,int,char","metadata":{}},{"cell_type":"code","source":"scalar = torch.Tensor(7)","metadata":{"execution":{"iopub.status.busy":"2024-05-07T07:51:27.080204Z","iopub.execute_input":"2024-05-07T07:51:27.080564Z","iopub.status.idle":"2024-05-07T07:51:27.095507Z","shell.execute_reply.started":"2024-05-07T07:51:27.080541Z","shell.execute_reply":"2024-05-07T07:51:27.094130Z"},"trusted":true},"execution_count":6,"outputs":[]},{"cell_type":"code","source":"scalar","metadata":{"execution":{"iopub.status.busy":"2024-05-07T07:51:34.317256Z","iopub.execute_input":"2024-05-07T07:51:34.317581Z","iopub.status.idle":"2024-05-07T07:51:34.395945Z","shell.execute_reply.started":"2024-05-07T07:51:34.317560Z","shell.execute_reply":"2024-05-07T07:51:34.394499Z"},"trusted":true},"execution_count":7,"outputs":[{"execution_count":7,"output_type":"execute_result","data":{"text/plain":"tensor([0., 0., 0., 0., 0., 0., 0.])"},"metadata":{}}]},{"cell_type":"code","source":"scalar.ndim # number of dimensions\n","metadata":{"execution":{"iopub.status.busy":"2024-05-07T07:54:08.054852Z","iopub.execute_input":"2024-05-07T07:54:08.055207Z","iopub.status.idle":"2024-05-07T07:54:08.063491Z","shell.execute_reply.started":"2024-05-07T07:54:08.055185Z","shell.execute_reply":"2024-05-07T07:54:08.062283Z"},"trusted":true},"execution_count":9,"outputs":[{"execution_count":9,"output_type":"execute_result","data":{"text/plain":"1"},"metadata":{}}]},{"cell_type":"code","source":"scalar.dense_dim()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T07:54:35.414199Z","iopub.execute_input":"2024-05-07T07:54:35.414544Z","iopub.status.idle":"2024-05-07T07:54:35.421790Z","shell.execute_reply.started":"2024-05-07T07:54:35.414521Z","shell.execute_reply":"2024-05-07T07:54:35.420603Z"},"trusted":true},"execution_count":10,"outputs":[{"execution_count":10,"output_type":"execute_result","data":{"text/plain":"1"},"metadata":{}}]},{"cell_type":"code","source":"scalar = torch.Tensor([7])","metadata":{"execution":{"iopub.status.busy":"2024-05-07T07:59:58.240245Z","iopub.execute_input":"2024-05-07T07:59:58.240601Z","iopub.status.idle":"2024-05-07T07:59:58.245755Z","shell.execute_reply.started":"2024-05-07T07:59:58.240579Z","shell.execute_reply":"2024-05-07T07:59:58.244280Z"},"trusted":true},"execution_count":18,"outputs":[]},{"cell_type":"code","source":"scalar.item()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T07:59:59.430167Z","iopub.execute_input":"2024-05-07T07:59:59.430547Z","iopub.status.idle":"2024-05-07T07:59:59.436903Z","shell.execute_reply.started":"2024-05-07T07:59:59.430520Z","shell.execute_reply":"2024-05-07T07:59:59.435991Z"},"trusted":true},"execution_count":19,"outputs":[{"execution_count":19,"output_type":"execute_result","data":{"text/plain":"7.0"},"metadata":{}}]},{"cell_type":"markdown","source":"#### Vector's","metadata":{}},{"cell_type":"code","source":"vector = torch.Tensor([7,7])","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:00:52.506237Z","iopub.execute_input":"2024-05-07T08:00:52.506642Z","iopub.status.idle":"2024-05-07T08:00:52.511084Z","shell.execute_reply.started":"2024-05-07T08:00:52.506618Z","shell.execute_reply":"2024-05-07T08:00:52.509895Z"},"trusted":true},"execution_count":20,"outputs":[]},{"cell_type":"code","source":"vector","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:01:03.485140Z","iopub.execute_input":"2024-05-07T08:01:03.485495Z","iopub.status.idle":"2024-05-07T08:01:03.492429Z","shell.execute_reply.started":"2024-05-07T08:01:03.485472Z","shell.execute_reply":"2024-05-07T08:01:03.491499Z"},"trusted":true},"execution_count":23,"outputs":[{"execution_count":23,"output_type":"execute_result","data":{"text/plain":"tensor([7., 7.])"},"metadata":{}}]},{"cell_type":"code","source":"vector.shape","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:01:22.626847Z","iopub.execute_input":"2024-05-07T08:01:22.627225Z","iopub.status.idle":"2024-05-07T08:01:22.632982Z","shell.execute_reply.started":"2024-05-07T08:01:22.627201Z","shell.execute_reply":"2024-05-07T08:01:22.632173Z"},"trusted":true},"execution_count":24,"outputs":[{"execution_count":24,"output_type":"execute_result","data":{"text/plain":"torch.Size([2])"},"metadata":{}}]},{"cell_type":"code","source":"vector.dense_dim()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:01:42.284516Z","iopub.execute_input":"2024-05-07T08:01:42.284915Z","iopub.status.idle":"2024-05-07T08:01:42.291252Z","shell.execute_reply.started":"2024-05-07T08:01:42.284893Z","shell.execute_reply":"2024-05-07T08:01:42.290147Z"},"trusted":true},"execution_count":27,"outputs":[{"execution_count":27,"output_type":"execute_result","data":{"text/plain":"1"},"metadata":{}}]},{"cell_type":"markdown","source":"#### Matrix","metadata":{}},{"cell_type":"code","source":"matrix = torch.Tensor([[1,2],[3,4]])","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:06:31.568297Z","iopub.execute_input":"2024-05-07T08:06:31.568645Z","iopub.status.idle":"2024-05-07T08:06:31.573567Z","shell.execute_reply.started":"2024-05-07T08:06:31.568622Z","shell.execute_reply":"2024-05-07T08:06:31.572394Z"},"trusted":true},"execution_count":60,"outputs":[]},{"cell_type":"code","source":"matrix","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:06:31.735163Z","iopub.execute_input":"2024-05-07T08:06:31.735551Z","iopub.status.idle":"2024-05-07T08:06:31.743301Z","shell.execute_reply.started":"2024-05-07T08:06:31.735526Z","shell.execute_reply":"2024-05-07T08:06:31.742207Z"},"trusted":true},"execution_count":61,"outputs":[{"execution_count":61,"output_type":"execute_result","data":{"text/plain":"tensor([[1., 2.],\n        [3., 4.]])"},"metadata":{}}]},{"cell_type":"code","source":"matrix.shape","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:06:31.870192Z","iopub.execute_input":"2024-05-07T08:06:31.870550Z","iopub.status.idle":"2024-05-07T08:06:31.877528Z","shell.execute_reply.started":"2024-05-07T08:06:31.870527Z","shell.execute_reply":"2024-05-07T08:06:31.876741Z"},"trusted":true},"execution_count":62,"outputs":[{"execution_count":62,"output_type":"execute_result","data":{"text/plain":"torch.Size([2, 2])"},"metadata":{}}]},{"cell_type":"code","source":"matrix*2 # same as other operations","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:06:32.030118Z","iopub.execute_input":"2024-05-07T08:06:32.030475Z","iopub.status.idle":"2024-05-07T08:06:32.037921Z","shell.execute_reply.started":"2024-05-07T08:06:32.030451Z","shell.execute_reply":"2024-05-07T08:06:32.037044Z"},"trusted":true},"execution_count":63,"outputs":[{"execution_count":63,"output_type":"execute_result","data":{"text/plain":"tensor([[2., 4.],\n        [6., 8.]])"},"metadata":{}}]},{"cell_type":"code","source":"# matrix-[2] #error","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:06:32.165345Z","iopub.execute_input":"2024-05-07T08:06:32.165701Z","iopub.status.idle":"2024-05-07T08:06:32.170259Z","shell.execute_reply.started":"2024-05-07T08:06:32.165676Z","shell.execute_reply":"2024-05-07T08:06:32.169170Z"},"trusted":true},"execution_count":64,"outputs":[]},{"cell_type":"code","source":"matrix+2","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:06:32.330157Z","iopub.execute_input":"2024-05-07T08:06:32.330515Z","iopub.status.idle":"2024-05-07T08:06:32.337604Z","shell.execute_reply.started":"2024-05-07T08:06:32.330490Z","shell.execute_reply":"2024-05-07T08:06:32.336790Z"},"trusted":true},"execution_count":65,"outputs":[{"execution_count":65,"output_type":"execute_result","data":{"text/plain":"tensor([[3., 4.],\n        [5., 6.]])"},"metadata":{}}]},{"cell_type":"code","source":"combined= matrix+vector+scalar","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:06:32.480360Z","iopub.execute_input":"2024-05-07T08:06:32.480722Z","iopub.status.idle":"2024-05-07T08:06:32.485946Z","shell.execute_reply.started":"2024-05-07T08:06:32.480699Z","shell.execute_reply":"2024-05-07T08:06:32.484874Z"},"trusted":true},"execution_count":66,"outputs":[]},{"cell_type":"code","source":"combined","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:06:32.630370Z","iopub.execute_input":"2024-05-07T08:06:32.630750Z","iopub.status.idle":"2024-05-07T08:06:32.638764Z","shell.execute_reply.started":"2024-05-07T08:06:32.630725Z","shell.execute_reply":"2024-05-07T08:06:32.637518Z"},"trusted":true},"execution_count":67,"outputs":[{"execution_count":67,"output_type":"execute_result","data":{"text/plain":"tensor([[15., 16.],\n        [17., 18.]])"},"metadata":{}}]},{"cell_type":"code","source":"matrix","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:06:33.267261Z","iopub.execute_input":"2024-05-07T08:06:33.267635Z","iopub.status.idle":"2024-05-07T08:06:33.274487Z","shell.execute_reply.started":"2024-05-07T08:06:33.267611Z","shell.execute_reply":"2024-05-07T08:06:33.273200Z"},"trusted":true},"execution_count":68,"outputs":[{"execution_count":68,"output_type":"execute_result","data":{"text/plain":"tensor([[1., 2.],\n        [3., 4.]])"},"metadata":{}}]},{"cell_type":"code","source":"matrix = matrix[:1,:2]","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:06:33.485499Z","iopub.execute_input":"2024-05-07T08:06:33.485862Z","iopub.status.idle":"2024-05-07T08:06:33.491332Z","shell.execute_reply.started":"2024-05-07T08:06:33.485838Z","shell.execute_reply":"2024-05-07T08:06:33.489558Z"},"trusted":true},"execution_count":69,"outputs":[]},{"cell_type":"code","source":"matrix","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:06:34.207376Z","iopub.execute_input":"2024-05-07T08:06:34.207776Z","iopub.status.idle":"2024-05-07T08:06:34.216326Z","shell.execute_reply.started":"2024-05-07T08:06:34.207753Z","shell.execute_reply":"2024-05-07T08:06:34.215241Z"},"trusted":true},"execution_count":70,"outputs":[{"execution_count":70,"output_type":"execute_result","data":{"text/plain":"tensor([[1., 2.]])"},"metadata":{}}]},{"cell_type":"code","source":"matrix = torch.Tensor([1,-2,3,-4,5,6,-7,8])","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:12:48.390014Z","iopub.execute_input":"2024-05-07T08:12:48.390357Z","iopub.status.idle":"2024-05-07T08:12:48.396654Z","shell.execute_reply.started":"2024-05-07T08:12:48.390335Z","shell.execute_reply":"2024-05-07T08:12:48.395290Z"},"trusted":true},"execution_count":111,"outputs":[]},{"cell_type":"code","source":"matrix = matrix.view(2,4) # change size/shape of a tensor ","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:12:49.938456Z","iopub.execute_input":"2024-05-07T08:12:49.938881Z","iopub.status.idle":"2024-05-07T08:12:49.944763Z","shell.execute_reply.started":"2024-05-07T08:12:49.938858Z","shell.execute_reply":"2024-05-07T08:12:49.943353Z"},"trusted":true},"execution_count":112,"outputs":[]},{"cell_type":"code","source":"matrix","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:12:50.758352Z","iopub.execute_input":"2024-05-07T08:12:50.758693Z","iopub.status.idle":"2024-05-07T08:12:50.767704Z","shell.execute_reply.started":"2024-05-07T08:12:50.758671Z","shell.execute_reply":"2024-05-07T08:12:50.766525Z"},"trusted":true},"execution_count":113,"outputs":[{"execution_count":113,"output_type":"execute_result","data":{"text/plain":"tensor([[ 1., -2.,  3., -4.],\n        [ 5.,  6., -7.,  8.]])"},"metadata":{}}]},{"cell_type":"code","source":"matrix[:,:3]\n","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:14:39.018931Z","iopub.execute_input":"2024-05-07T08:14:39.019311Z","iopub.status.idle":"2024-05-07T08:14:39.026656Z","shell.execute_reply.started":"2024-05-07T08:14:39.019289Z","shell.execute_reply":"2024-05-07T08:14:39.025730Z"},"trusted":true},"execution_count":114,"outputs":[{"execution_count":114,"output_type":"execute_result","data":{"text/plain":"tensor([[ 1., -2.,  3.],\n        [ 5.,  6., -7.]])"},"metadata":{}}]},{"cell_type":"code","source":"matrix.abs()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:14:40.128590Z","iopub.execute_input":"2024-05-07T08:14:40.128940Z","iopub.status.idle":"2024-05-07T08:14:40.137976Z","shell.execute_reply.started":"2024-05-07T08:14:40.128917Z","shell.execute_reply":"2024-05-07T08:14:40.136688Z"},"trusted":true},"execution_count":115,"outputs":[{"execution_count":115,"output_type":"execute_result","data":{"text/plain":"tensor([[1., 2., 3., 4.],\n        [5., 6., 7., 8.]])"},"metadata":{}}]},{"cell_type":"code","source":"matrix.sinh()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:14:40.876202Z","iopub.execute_input":"2024-05-07T08:14:40.876529Z","iopub.status.idle":"2024-05-07T08:14:40.884695Z","shell.execute_reply.started":"2024-05-07T08:14:40.876509Z","shell.execute_reply":"2024-05-07T08:14:40.883228Z"},"trusted":true},"execution_count":116,"outputs":[{"execution_count":116,"output_type":"execute_result","data":{"text/plain":"tensor([[ 1.1752e+00, -3.6269e+00,  1.0018e+01, -2.7290e+01],\n        [ 7.4203e+01,  2.0171e+02, -5.4832e+02,  1.4905e+03]])"},"metadata":{}}]},{"cell_type":"code","source":"matrix","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:14:45.607642Z","iopub.execute_input":"2024-05-07T08:14:45.607990Z","iopub.status.idle":"2024-05-07T08:14:45.615856Z","shell.execute_reply.started":"2024-05-07T08:14:45.607967Z","shell.execute_reply":"2024-05-07T08:14:45.614781Z"},"trusted":true},"execution_count":117,"outputs":[{"execution_count":117,"output_type":"execute_result","data":{"text/plain":"tensor([[ 1., -2.,  3., -4.],\n        [ 5.,  6., -7.,  8.]])"},"metadata":{}}]},{"cell_type":"code","source":"matrix.sin()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:15:02.963115Z","iopub.execute_input":"2024-05-07T08:15:02.963456Z","iopub.status.idle":"2024-05-07T08:15:02.972486Z","shell.execute_reply.started":"2024-05-07T08:15:02.963433Z","shell.execute_reply":"2024-05-07T08:15:02.971476Z"},"trusted":true},"execution_count":118,"outputs":[{"execution_count":118,"output_type":"execute_result","data":{"text/plain":"tensor([[ 0.8415, -0.9093,  0.1411,  0.7568],\n        [-0.9589, -0.2794, -0.6570,  0.9894]])"},"metadata":{}}]},{"cell_type":"code","source":"rng = torch.arange(0,10)","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:16:08.926982Z","iopub.execute_input":"2024-05-07T08:16:08.927328Z","iopub.status.idle":"2024-05-07T08:16:08.934480Z","shell.execute_reply.started":"2024-05-07T08:16:08.927306Z","shell.execute_reply":"2024-05-07T08:16:08.933681Z"},"trusted":true},"execution_count":120,"outputs":[]},{"cell_type":"code","source":"rng","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:16:12.741480Z","iopub.execute_input":"2024-05-07T08:16:12.741814Z","iopub.status.idle":"2024-05-07T08:16:12.749272Z","shell.execute_reply.started":"2024-05-07T08:16:12.741792Z","shell.execute_reply":"2024-05-07T08:16:12.748183Z"},"trusted":true},"execution_count":121,"outputs":[{"execution_count":121,"output_type":"execute_result","data":{"text/plain":"tensor([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])"},"metadata":{}}]},{"cell_type":"code","source":"rng = torch.arange(0,10.2,0.2) # 0-10 at 0.2 gap, take start and end accordingly","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:19:52.159925Z","iopub.execute_input":"2024-05-07T08:19:52.160291Z","iopub.status.idle":"2024-05-07T08:19:52.165830Z","shell.execute_reply.started":"2024-05-07T08:19:52.160268Z","shell.execute_reply":"2024-05-07T08:19:52.164437Z"},"trusted":true},"execution_count":138,"outputs":[]},{"cell_type":"code","source":"rng","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:19:52.448309Z","iopub.execute_input":"2024-05-07T08:19:52.448667Z","iopub.status.idle":"2024-05-07T08:19:52.456299Z","shell.execute_reply.started":"2024-05-07T08:19:52.448643Z","shell.execute_reply":"2024-05-07T08:19:52.455249Z"},"trusted":true},"execution_count":139,"outputs":[{"execution_count":139,"output_type":"execute_result","data":{"text/plain":"tensor([ 0.0000,  0.2000,  0.4000,  0.6000,  0.8000,  1.0000,  1.2000,  1.4000,\n         1.6000,  1.8000,  2.0000,  2.2000,  2.4000,  2.6000,  2.8000,  3.0000,\n         3.2000,  3.4000,  3.6000,  3.8000,  4.0000,  4.2000,  4.4000,  4.6000,\n         4.8000,  5.0000,  5.2000,  5.4000,  5.6000,  5.8000,  6.0000,  6.2000,\n         6.4000,  6.6000,  6.8000,  7.0000,  7.2000,  7.4000,  7.6000,  7.8000,\n         8.0000,  8.2000,  8.4000,  8.6000,  8.8000,  9.0000,  9.2000,  9.4000,\n         9.6000,  9.8000, 10.0000])"},"metadata":{}}]},{"cell_type":"code","source":"x = rng.numpy()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:19:52.601479Z","iopub.execute_input":"2024-05-07T08:19:52.601823Z","iopub.status.idle":"2024-05-07T08:19:52.606979Z","shell.execute_reply.started":"2024-05-07T08:19:52.601799Z","shell.execute_reply":"2024-05-07T08:19:52.605746Z"},"trusted":true},"execution_count":140,"outputs":[]},{"cell_type":"code","source":"x","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:19:52.805830Z","iopub.execute_input":"2024-05-07T08:19:52.806211Z","iopub.status.idle":"2024-05-07T08:19:52.813791Z","shell.execute_reply.started":"2024-05-07T08:19:52.806187Z","shell.execute_reply":"2024-05-07T08:19:52.812590Z"},"trusted":true},"execution_count":141,"outputs":[{"execution_count":141,"output_type":"execute_result","data":{"text/plain":"array([ 0.       ,  0.2      ,  0.4      ,  0.6      ,  0.8      ,\n        1.       ,  1.2      ,  1.4      ,  1.6      ,  1.8000001,\n        2.       ,  2.2      ,  2.4      ,  2.6      ,  2.8      ,\n        3.       ,  3.2      ,  3.4      ,  3.6000001,  3.8      ,\n        4.       ,  4.2      ,  4.4      ,  4.6      ,  4.8      ,\n        5.       ,  5.2000003,  5.4      ,  5.6000004,  5.8      ,\n        6.       ,  6.2000003,  6.4      ,  6.6      ,  6.8      ,\n        7.       ,  7.2000003,  7.4      ,  7.6      ,  7.8      ,\n        8.       ,  8.2      ,  8.4      ,  8.6      ,  8.8      ,\n        9.       ,  9.2      ,  9.4      ,  9.6      ,  9.8      ,\n       10.       ], dtype=float32)"},"metadata":{}}]},{"cell_type":"code","source":"rng = torch.from_numpy(x)","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:19:54.769863Z","iopub.execute_input":"2024-05-07T08:19:54.771063Z","iopub.status.idle":"2024-05-07T08:19:54.775399Z","shell.execute_reply.started":"2024-05-07T08:19:54.771032Z","shell.execute_reply":"2024-05-07T08:19:54.774124Z"},"trusted":true},"execution_count":142,"outputs":[]},{"cell_type":"code","source":"rng","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:19:55.358122Z","iopub.execute_input":"2024-05-07T08:19:55.358475Z","iopub.status.idle":"2024-05-07T08:19:55.366351Z","shell.execute_reply.started":"2024-05-07T08:19:55.358452Z","shell.execute_reply":"2024-05-07T08:19:55.364934Z"},"trusted":true},"execution_count":143,"outputs":[{"execution_count":143,"output_type":"execute_result","data":{"text/plain":"tensor([ 0.0000,  0.2000,  0.4000,  0.6000,  0.8000,  1.0000,  1.2000,  1.4000,\n         1.6000,  1.8000,  2.0000,  2.2000,  2.4000,  2.6000,  2.8000,  3.0000,\n         3.2000,  3.4000,  3.6000,  3.8000,  4.0000,  4.2000,  4.4000,  4.6000,\n         4.8000,  5.0000,  5.2000,  5.4000,  5.6000,  5.8000,  6.0000,  6.2000,\n         6.4000,  6.6000,  6.8000,  7.0000,  7.2000,  7.4000,  7.6000,  7.8000,\n         8.0000,  8.2000,  8.4000,  8.6000,  8.8000,  9.0000,  9.2000,  9.4000,\n         9.6000,  9.8000, 10.0000])"},"metadata":{}}]},{"cell_type":"code","source":"matrix[0] # matrix is like our 2dim array","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:22:53.851547Z","iopub.execute_input":"2024-05-07T08:22:53.852078Z","iopub.status.idle":"2024-05-07T08:22:53.861036Z","shell.execute_reply.started":"2024-05-07T08:22:53.852010Z","shell.execute_reply":"2024-05-07T08:22:53.859988Z"},"trusted":true},"execution_count":146,"outputs":[{"execution_count":146,"output_type":"execute_result","data":{"text/plain":"tensor([ 1., -2.,  3., -4.])"},"metadata":{}}]},{"cell_type":"markdown","source":"### Random Number","metadata":{}},{"cell_type":"code","source":"rnadom = torch.randn(1,10) # size is passed here no range.","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:23:54.088293Z","iopub.execute_input":"2024-05-07T08:23:54.088662Z","iopub.status.idle":"2024-05-07T08:23:54.093846Z","shell.execute_reply.started":"2024-05-07T08:23:54.088639Z","shell.execute_reply":"2024-05-07T08:23:54.092782Z"},"trusted":true},"execution_count":149,"outputs":[]},{"cell_type":"code","source":"rnadom","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:24:48.126080Z","iopub.execute_input":"2024-05-07T08:24:48.126432Z","iopub.status.idle":"2024-05-07T08:24:48.133616Z","shell.execute_reply.started":"2024-05-07T08:24:48.126409Z","shell.execute_reply":"2024-05-07T08:24:48.132819Z"},"trusted":true},"execution_count":153,"outputs":[{"execution_count":153,"output_type":"execute_result","data":{"text/plain":"tensor([[-0.3796, -1.1059,  0.8101, -0.3535,  0.2893, -0.1235, -0.2087, -0.5267,\n          0.2540, -0.5265]])"},"metadata":{}}]},{"cell_type":"code","source":"random = torch.randint(10, (2,10)) # 0-10 exc random numbers tesnor of size 2,10","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:26:46.847219Z","iopub.execute_input":"2024-05-07T08:26:46.847583Z","iopub.status.idle":"2024-05-07T08:26:46.853324Z","shell.execute_reply.started":"2024-05-07T08:26:46.847559Z","shell.execute_reply":"2024-05-07T08:26:46.851668Z"},"trusted":true},"execution_count":170,"outputs":[]},{"cell_type":"code","source":"random","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:26:47.035587Z","iopub.execute_input":"2024-05-07T08:26:47.035949Z","iopub.status.idle":"2024-05-07T08:26:47.046279Z","shell.execute_reply.started":"2024-05-07T08:26:47.035926Z","shell.execute_reply":"2024-05-07T08:26:47.044543Z"},"trusted":true},"execution_count":171,"outputs":[{"execution_count":171,"output_type":"execute_result","data":{"text/plain":"tensor([[3, 5, 1, 4, 1, 8, 7, 9, 7, 9],\n        [5, 1, 5, 8, 8, 8, 9, 4, 8, 0]])"},"metadata":{}}]},{"cell_type":"code","source":"div = torch.div(torch.FloatTensor([1,2,3,4]),2)","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:30:30.861124Z","iopub.execute_input":"2024-05-07T08:30:30.861492Z","iopub.status.idle":"2024-05-07T08:30:30.867663Z","shell.execute_reply.started":"2024-05-07T08:30:30.861464Z","shell.execute_reply":"2024-05-07T08:30:30.866343Z"},"trusted":true},"execution_count":174,"outputs":[]},{"cell_type":"code","source":"div","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:30:31.335280Z","iopub.execute_input":"2024-05-07T08:30:31.336163Z","iopub.status.idle":"2024-05-07T08:30:31.345297Z","shell.execute_reply.started":"2024-05-07T08:30:31.336104Z","shell.execute_reply":"2024-05-07T08:30:31.343420Z"},"trusted":true},"execution_count":175,"outputs":[{"execution_count":175,"output_type":"execute_result","data":{"text/plain":"tensor([0.5000, 1.0000, 1.5000, 2.0000])"},"metadata":{}}]},{"cell_type":"code","source":"div.size()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:31:59.470343Z","iopub.execute_input":"2024-05-07T08:31:59.470702Z","iopub.status.idle":"2024-05-07T08:31:59.477181Z","shell.execute_reply.started":"2024-05-07T08:31:59.470679Z","shell.execute_reply":"2024-05-07T08:31:59.475947Z"},"trusted":true},"execution_count":179,"outputs":[{"execution_count":179,"output_type":"execute_result","data":{"text/plain":"torch.Size([4])"},"metadata":{}}]},{"cell_type":"code","source":"identity_matrix = torch.eye(2,2)","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:32:38.247298Z","iopub.execute_input":"2024-05-07T08:32:38.247623Z","iopub.status.idle":"2024-05-07T08:32:38.252565Z","shell.execute_reply.started":"2024-05-07T08:32:38.247602Z","shell.execute_reply":"2024-05-07T08:32:38.251281Z"},"trusted":true},"execution_count":182,"outputs":[]},{"cell_type":"code","source":"identity_matrix","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:32:38.495834Z","iopub.execute_input":"2024-05-07T08:32:38.496192Z","iopub.status.idle":"2024-05-07T08:32:38.503087Z","shell.execute_reply.started":"2024-05-07T08:32:38.496171Z","shell.execute_reply":"2024-05-07T08:32:38.501658Z"},"trusted":true},"execution_count":183,"outputs":[{"execution_count":183,"output_type":"execute_result","data":{"text/plain":"tensor([[1., 0.],\n        [0., 1.]])"},"metadata":{}}]},{"cell_type":"code","source":"rnd = torch.randn(10,10)","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:33:23.600184Z","iopub.execute_input":"2024-05-07T08:33:23.600535Z","iopub.status.idle":"2024-05-07T08:33:23.606116Z","shell.execute_reply.started":"2024-05-07T08:33:23.600512Z","shell.execute_reply":"2024-05-07T08:33:23.604585Z"},"trusted":true},"execution_count":184,"outputs":[]},{"cell_type":"markdown","source":"### Maths and operations","metadata":{}},{"cell_type":"code","source":"rnd = rnd.abs()*10","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:34:18.257142Z","iopub.execute_input":"2024-05-07T08:34:18.257500Z","iopub.status.idle":"2024-05-07T08:34:18.263508Z","shell.execute_reply.started":"2024-05-07T08:34:18.257475Z","shell.execute_reply":"2024-05-07T08:34:18.261975Z"},"trusted":true},"execution_count":195,"outputs":[]},{"cell_type":"code","source":"rnd.max()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:34:18.430261Z","iopub.execute_input":"2024-05-07T08:34:18.430590Z","iopub.status.idle":"2024-05-07T08:34:18.438163Z","shell.execute_reply.started":"2024-05-07T08:34:18.430569Z","shell.execute_reply":"2024-05-07T08:34:18.437092Z"},"trusted":true},"execution_count":196,"outputs":[{"execution_count":196,"output_type":"execute_result","data":{"text/plain":"tensor(2805.3882)"},"metadata":{}}]},{"cell_type":"code","source":"rnd.amin() # min and ","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:35:26.605592Z","iopub.execute_input":"2024-05-07T08:35:26.605988Z","iopub.status.idle":"2024-05-07T08:35:26.615568Z","shell.execute_reply.started":"2024-05-07T08:35:26.605963Z","shell.execute_reply":"2024-05-07T08:35:26.614101Z"},"trusted":true},"execution_count":199,"outputs":[{"execution_count":199,"output_type":"execute_result","data":{"text/plain":"tensor(3.8507)"},"metadata":{}}]},{"cell_type":"code","source":"matrix","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:37:51.540757Z","iopub.execute_input":"2024-05-07T08:37:51.541160Z","iopub.status.idle":"2024-05-07T08:37:51.550336Z","shell.execute_reply.started":"2024-05-07T08:37:51.541136Z","shell.execute_reply":"2024-05-07T08:37:51.549047Z"},"trusted":true},"execution_count":200,"outputs":[{"execution_count":200,"output_type":"execute_result","data":{"text/plain":"tensor([[ 1., -2.,  3., -4.],\n        [ 5.,  6., -7.,  8.]])"},"metadata":{}}]},{"cell_type":"code","source":"torch.max(matrix, dim=0\n         \n         )","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:39:51.125097Z","iopub.execute_input":"2024-05-07T08:39:51.125436Z","iopub.status.idle":"2024-05-07T08:39:51.132596Z","shell.execute_reply.started":"2024-05-07T08:39:51.125412Z","shell.execute_reply":"2024-05-07T08:39:51.131467Z"},"trusted":true},"execution_count":209,"outputs":[{"execution_count":209,"output_type":"execute_result","data":{"text/plain":"torch.return_types.max(\nvalues=tensor([5., 6., 3., 8.]),\nindices=tensor([1, 1, 0, 1]))"},"metadata":{}}]},{"cell_type":"code","source":"torch.amax(matrix, dim=1) # it doesnt return indices. ","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:39:51.569952Z","iopub.execute_input":"2024-05-07T08:39:51.570325Z","iopub.status.idle":"2024-05-07T08:39:51.578305Z","shell.execute_reply.started":"2024-05-07T08:39:51.570302Z","shell.execute_reply":"2024-05-07T08:39:51.576960Z"},"trusted":true},"execution_count":210,"outputs":[{"execution_count":210,"output_type":"execute_result","data":{"text/plain":"tensor([3., 8.])"},"metadata":{}}]},{"cell_type":"markdown","source":"rnd.ceil() and floor we can do this. ","metadata":{}},{"cell_type":"code","source":"rnd.round()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:41:32.037363Z","iopub.execute_input":"2024-05-07T08:41:32.037735Z","iopub.status.idle":"2024-05-07T08:41:32.046594Z","shell.execute_reply.started":"2024-05-07T08:41:32.037712Z","shell.execute_reply":"2024-05-07T08:41:32.045301Z"},"trusted":true},"execution_count":218,"outputs":[{"execution_count":218,"output_type":"execute_result","data":{"text/plain":"tensor([[1741.,  288.,  313.,  750.,  184.,  458.,  576.,  337.,  313.,  784.],\n        [ 686.,  341.,  275.,  343., 1877., 1167., 1416., 1014., 1256.,  519.],\n        [ 578.,   31.,  315., 1152., 1345.,  217., 1381.,  429.,  237.,  323.],\n        [1496., 1319., 1330., 1384.,  336.,    6.,  328.,   50., 2702., 1329.],\n        [ 970.,   33.,  479.,  989.,  502., 1527., 1138., 1048.,  370.,  269.],\n        [ 539.,  597., 1111.,  827.,    4.,  626.,  674.,  371.,  452., 1334.],\n        [ 135., 2805.,  535., 2241.,  559.,  313.,   57.,  253.,  338.,  977.],\n        [ 446.,  277., 1442.,  586.,  637.,  150., 1256., 1123.,  734.,  355.],\n        [ 307.,  645.,  288., 1032., 1347.,  238., 1634.,  584.,  662.,   47.],\n        [1248., 1116.,  328.,  925., 1137., 1133.,  928.,  982.,  196.,  953.]])"},"metadata":{}}]},{"cell_type":"code","source":"torch.round_(rnd)","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:42:25.867102Z","iopub.execute_input":"2024-05-07T08:42:25.867444Z","iopub.status.idle":"2024-05-07T08:42:25.876491Z","shell.execute_reply.started":"2024-05-07T08:42:25.867419Z","shell.execute_reply":"2024-05-07T08:42:25.875325Z"},"trusted":true},"execution_count":221,"outputs":[{"execution_count":221,"output_type":"execute_result","data":{"text/plain":"tensor([[1741.,  288.,  313.,  750.,  184.,  458.,  576.,  337.,  313.,  784.],\n        [ 686.,  341.,  275.,  343., 1877., 1167., 1416., 1014., 1256.,  519.],\n        [ 578.,   31.,  315., 1152., 1345.,  217., 1381.,  429.,  237.,  323.],\n        [1496., 1319., 1330., 1384.,  336.,    6.,  328.,   50., 2702., 1329.],\n        [ 970.,   33.,  479.,  989.,  502., 1527., 1138., 1048.,  370.,  269.],\n        [ 539.,  597., 1111.,  827.,    4.,  626.,  674.,  371.,  452., 1334.],\n        [ 135., 2805.,  535., 2241.,  559.,  313.,   57.,  253.,  338.,  977.],\n        [ 446.,  277., 1442.,  586.,  637.,  150., 1256., 1123.,  734.,  355.],\n        [ 307.,  645.,  288., 1032., 1347.,  238., 1634.,  584.,  662.,   47.],\n        [1248., 1116.,  328.,  925., 1137., 1133.,  928.,  982.,  196.,  953.]])"},"metadata":{}}]},{"cell_type":"code","source":"nmaty = torch.randn(size=(3,4,4))","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:44:47.189932Z","iopub.execute_input":"2024-05-07T08:44:47.190320Z","iopub.status.idle":"2024-05-07T08:44:47.195679Z","shell.execute_reply.started":"2024-05-07T08:44:47.190297Z","shell.execute_reply":"2024-05-07T08:44:47.194448Z"},"trusted":true},"execution_count":224,"outputs":[]},{"cell_type":"code","source":"nmaty.shape, nmaty.ndim","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:45:07.660402Z","iopub.execute_input":"2024-05-07T08:45:07.660741Z","iopub.status.idle":"2024-05-07T08:45:07.668010Z","shell.execute_reply.started":"2024-05-07T08:45:07.660719Z","shell.execute_reply":"2024-05-07T08:45:07.667168Z"},"trusted":true},"execution_count":226,"outputs":[{"execution_count":226,"output_type":"execute_result","data":{"text/plain":"(torch.Size([3, 4, 4]), 3)"},"metadata":{}}]},{"cell_type":"markdown","source":"### TORCH zeroes and ones matrix","metadata":{}},{"cell_type":"code","source":"zeroes = torch.zeros(size=(3,3))","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:46:10.062642Z","iopub.execute_input":"2024-05-07T08:46:10.062992Z","iopub.status.idle":"2024-05-07T08:46:10.068351Z","shell.execute_reply.started":"2024-05-07T08:46:10.062970Z","shell.execute_reply":"2024-05-07T08:46:10.067010Z"},"trusted":true},"execution_count":227,"outputs":[]},{"cell_type":"code","source":"zeroes","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:46:12.585168Z","iopub.execute_input":"2024-05-07T08:46:12.585525Z","iopub.status.idle":"2024-05-07T08:46:12.592722Z","shell.execute_reply.started":"2024-05-07T08:46:12.585501Z","shell.execute_reply":"2024-05-07T08:46:12.591372Z"},"trusted":true},"execution_count":228,"outputs":[{"execution_count":228,"output_type":"execute_result","data":{"text/plain":"tensor([[0., 0., 0.],\n        [0., 0., 0.],\n        [0., 0., 0.]])"},"metadata":{}}]},{"cell_type":"code","source":"ones = torch.ones(size=(4,4),dtype=(torch.int32))","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:51:37.828839Z","iopub.execute_input":"2024-05-07T08:51:37.829216Z","iopub.status.idle":"2024-05-07T08:51:37.834664Z","shell.execute_reply.started":"2024-05-07T08:51:37.829191Z","shell.execute_reply":"2024-05-07T08:51:37.833278Z"},"trusted":true},"execution_count":241,"outputs":[]},{"cell_type":"code","source":"ones","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:51:38.587012Z","iopub.execute_input":"2024-05-07T08:51:38.587503Z","iopub.status.idle":"2024-05-07T08:51:38.596904Z","shell.execute_reply.started":"2024-05-07T08:51:38.587464Z","shell.execute_reply":"2024-05-07T08:51:38.595107Z"},"trusted":true},"execution_count":242,"outputs":[{"execution_count":242,"output_type":"execute_result","data":{"text/plain":"tensor([[1, 1, 1, 1],\n        [1, 1, 1, 1],\n        [1, 1, 1, 1],\n        [1, 1, 1, 1]], dtype=torch.int32)"},"metadata":{}}]},{"cell_type":"code","source":"ones.shape","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:51:39.718380Z","iopub.execute_input":"2024-05-07T08:51:39.718716Z","iopub.status.idle":"2024-05-07T08:51:39.724996Z","shell.execute_reply.started":"2024-05-07T08:51:39.718693Z","shell.execute_reply":"2024-05-07T08:51:39.723876Z"},"trusted":true},"execution_count":243,"outputs":[{"execution_count":243,"output_type":"execute_result","data":{"text/plain":"torch.Size([4, 4])"},"metadata":{}}]},{"cell_type":"code","source":"ones.dtype","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:51:40.267274Z","iopub.execute_input":"2024-05-07T08:51:40.267635Z","iopub.status.idle":"2024-05-07T08:51:40.274421Z","shell.execute_reply.started":"2024-05-07T08:51:40.267612Z","shell.execute_reply":"2024-05-07T08:51:40.273363Z"},"trusted":true},"execution_count":244,"outputs":[{"execution_count":244,"output_type":"execute_result","data":{"text/plain":"torch.int32"},"metadata":{}}]},{"cell_type":"code","source":"ones_new = ones.type(torch.int16)","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:51:41.011676Z","iopub.execute_input":"2024-05-07T08:51:41.012102Z","iopub.status.idle":"2024-05-07T08:51:41.017014Z","shell.execute_reply.started":"2024-05-07T08:51:41.012076Z","shell.execute_reply":"2024-05-07T08:51:41.016041Z"},"trusted":true},"execution_count":245,"outputs":[]},{"cell_type":"code","source":"ones_new","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:51:41.724881Z","iopub.execute_input":"2024-05-07T08:51:41.725542Z","iopub.status.idle":"2024-05-07T08:51:41.732586Z","shell.execute_reply.started":"2024-05-07T08:51:41.725518Z","shell.execute_reply":"2024-05-07T08:51:41.731398Z"},"trusted":true},"execution_count":246,"outputs":[{"execution_count":246,"output_type":"execute_result","data":{"text/plain":"tensor([[1, 1, 1, 1],\n        [1, 1, 1, 1],\n        [1, 1, 1, 1],\n        [1, 1, 1, 1]], dtype=torch.int16)"},"metadata":{}}]},{"cell_type":"code","source":"ones.device","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:52:15.599117Z","iopub.execute_input":"2024-05-07T08:52:15.599537Z","iopub.status.idle":"2024-05-07T08:52:15.607221Z","shell.execute_reply.started":"2024-05-07T08:52:15.599509Z","shell.execute_reply":"2024-05-07T08:52:15.605825Z"},"trusted":true},"execution_count":247,"outputs":[{"execution_count":247,"output_type":"execute_result","data":{"text/plain":"device(type='cpu')"},"metadata":{}}]},{"cell_type":"code","source":"rnd.max()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:53:43.496163Z","iopub.execute_input":"2024-05-07T08:53:43.496518Z","iopub.status.idle":"2024-05-07T08:53:43.503983Z","shell.execute_reply.started":"2024-05-07T08:53:43.496491Z","shell.execute_reply":"2024-05-07T08:53:43.503079Z"},"trusted":true},"execution_count":249,"outputs":[{"execution_count":249,"output_type":"execute_result","data":{"text/plain":"tensor(2805.)"},"metadata":{}}]},{"cell_type":"code","source":"rnd.mean()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:54:01.634247Z","iopub.execute_input":"2024-05-07T08:54:01.634643Z","iopub.status.idle":"2024-05-07T08:54:01.643527Z","shell.execute_reply.started":"2024-05-07T08:54:01.634615Z","shell.execute_reply":"2024-05-07T08:54:01.642505Z"},"trusted":true},"execution_count":250,"outputs":[{"execution_count":250,"output_type":"execute_result","data":{"text/plain":"tensor(757.3500)"},"metadata":{}}]},{"cell_type":"code","source":"rnd.min()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:54:07.196222Z","iopub.execute_input":"2024-05-07T08:54:07.196589Z","iopub.status.idle":"2024-05-07T08:54:07.205435Z","shell.execute_reply.started":"2024-05-07T08:54:07.196565Z","shell.execute_reply":"2024-05-07T08:54:07.203991Z"},"trusted":true},"execution_count":251,"outputs":[{"execution_count":251,"output_type":"execute_result","data":{"text/plain":"tensor(4.)"},"metadata":{}}]},{"cell_type":"code","source":"rnd.mode()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:54:17.979148Z","iopub.execute_input":"2024-05-07T08:54:17.979543Z","iopub.status.idle":"2024-05-07T08:54:17.988193Z","shell.execute_reply.started":"2024-05-07T08:54:17.979518Z","shell.execute_reply":"2024-05-07T08:54:17.986881Z"},"trusted":true},"execution_count":252,"outputs":[{"execution_count":252,"output_type":"execute_result","data":{"text/plain":"torch.return_types.mode(\nvalues=tensor([313., 275.,  31.,   6.,  33.,   4.,  57., 150.,  47., 196.]),\nindices=tensor([8, 2, 1, 5, 1, 4, 6, 5, 9, 8]))"},"metadata":{}}]},{"cell_type":"code","source":"rnd.median()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:54:29.596639Z","iopub.execute_input":"2024-05-07T08:54:29.597747Z","iopub.status.idle":"2024-05-07T08:54:29.608172Z","shell.execute_reply.started":"2024-05-07T08:54:29.597715Z","shell.execute_reply":"2024-05-07T08:54:29.606736Z"},"trusted":true},"execution_count":253,"outputs":[{"execution_count":253,"output_type":"execute_result","data":{"text/plain":"tensor(586.)"},"metadata":{}}]},{"cell_type":"markdown","source":"#### argmax is for position of max ","metadata":{}},{"cell_type":"markdown","source":"##  Reshaping, Squeezing : remove 1 dims and unsqueeze : add 1 dim at given position","metadata":{}},{"cell_type":"code","source":"rnd = torch.randn(size=(1,100))","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:56:41.305109Z","iopub.execute_input":"2024-05-07T08:56:41.305481Z","iopub.status.idle":"2024-05-07T08:56:41.310878Z","shell.execute_reply.started":"2024-05-07T08:56:41.305456Z","shell.execute_reply":"2024-05-07T08:56:41.309659Z"},"trusted":true},"execution_count":256,"outputs":[]},{"cell_type":"code","source":"rnd.dim()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:56:58.124241Z","iopub.execute_input":"2024-05-07T08:56:58.124594Z","iopub.status.idle":"2024-05-07T08:56:58.131430Z","shell.execute_reply.started":"2024-05-07T08:56:58.124571Z","shell.execute_reply":"2024-05-07T08:56:58.130098Z"},"trusted":true},"execution_count":260,"outputs":[{"execution_count":260,"output_type":"execute_result","data":{"text/plain":"2"},"metadata":{}}]},{"cell_type":"code","source":"rnd.ndim","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:57:10.271637Z","iopub.execute_input":"2024-05-07T08:57:10.272011Z","iopub.status.idle":"2024-05-07T08:57:10.278419Z","shell.execute_reply.started":"2024-05-07T08:57:10.271987Z","shell.execute_reply":"2024-05-07T08:57:10.277260Z"},"trusted":true},"execution_count":262,"outputs":[{"execution_count":262,"output_type":"execute_result","data":{"text/plain":"2"},"metadata":{}}]},{"cell_type":"code","source":"rnd.size()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:57:14.881170Z","iopub.execute_input":"2024-05-07T08:57:14.881522Z","iopub.status.idle":"2024-05-07T08:57:14.888750Z","shell.execute_reply.started":"2024-05-07T08:57:14.881500Z","shell.execute_reply":"2024-05-07T08:57:14.887060Z"},"trusted":true},"execution_count":263,"outputs":[{"execution_count":263,"output_type":"execute_result","data":{"text/plain":"torch.Size([1, 100])"},"metadata":{}}]},{"cell_type":"code","source":"rnd.reshape([2,50])","metadata":{"execution":{"iopub.status.busy":"2024-05-07T08:57:33.088574Z","iopub.execute_input":"2024-05-07T08:57:33.088907Z","iopub.status.idle":"2024-05-07T08:57:33.097070Z","shell.execute_reply.started":"2024-05-07T08:57:33.088887Z","shell.execute_reply":"2024-05-07T08:57:33.096084Z"},"trusted":true},"execution_count":264,"outputs":[{"execution_count":264,"output_type":"execute_result","data":{"text/plain":"tensor([[ 0.8791, -0.4482, -0.6046, -0.3247, -0.6450, -0.5843,  0.2055,  0.5750,\n          1.1955,  0.5995, -0.7968, -0.1809,  0.0554, -0.2509,  0.6413, -0.0202,\n         -0.8850, -1.2118,  2.1793, -0.1034, -0.5918, -0.1628, -1.8355, -0.4040,\n          1.4351, -0.3694,  0.0592, -2.0066,  1.5645,  0.9217,  0.8409,  0.6184,\n          0.4325, -0.9955,  1.5052,  0.2934, -0.9453,  1.1799, -1.5419, -0.4086,\n         -1.1525,  0.7482, -0.0985,  0.3421,  0.1090,  1.0890, -0.7804,  0.4751,\n          0.5150, -0.2038],\n        [-1.2988, -0.4321,  0.5811,  0.3109,  0.3050, -1.5304,  0.1245,  2.0757,\n          0.4858,  0.6792, -0.4100, -0.0159,  0.6827, -1.3961,  1.4319, -0.8256,\n         -0.6054,  0.5830, -0.5231, -0.1731,  0.6801,  0.0933, -0.8529, -0.0998,\n         -0.1840,  0.6819,  0.3719,  0.2464, -0.3565, -0.4589,  0.5544,  1.7265,\n         -0.2435, -0.2290, -0.4081, -1.5937, -0.0252, -0.6393, -1.6204, -0.3930,\n         -1.2818, -0.7108, -0.0629, -0.9336,  0.9471,  1.3022,  0.5237,  0.3245,\n         -0.1613,  1.0443]])"},"metadata":{}}]},{"cell_type":"code","source":"rnd.flatten()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:31:12.970712Z","iopub.execute_input":"2024-05-07T09:31:12.971053Z","iopub.status.idle":"2024-05-07T09:31:12.980446Z","shell.execute_reply.started":"2024-05-07T09:31:12.971009Z","shell.execute_reply":"2024-05-07T09:31:12.979216Z"},"trusted":true},"execution_count":266,"outputs":[{"execution_count":266,"output_type":"execute_result","data":{"text/plain":"tensor([ 0.8791, -0.4482, -0.6046, -0.3247, -0.6450, -0.5843,  0.2055,  0.5750,\n         1.1955,  0.5995, -0.7968, -0.1809,  0.0554, -0.2509,  0.6413, -0.0202,\n        -0.8850, -1.2118,  2.1793, -0.1034, -0.5918, -0.1628, -1.8355, -0.4040,\n         1.4351, -0.3694,  0.0592, -2.0066,  1.5645,  0.9217,  0.8409,  0.6184,\n         0.4325, -0.9955,  1.5052,  0.2934, -0.9453,  1.1799, -1.5419, -0.4086,\n        -1.1525,  0.7482, -0.0985,  0.3421,  0.1090,  1.0890, -0.7804,  0.4751,\n         0.5150, -0.2038, -1.2988, -0.4321,  0.5811,  0.3109,  0.3050, -1.5304,\n         0.1245,  2.0757,  0.4858,  0.6792, -0.4100, -0.0159,  0.6827, -1.3961,\n         1.4319, -0.8256, -0.6054,  0.5830, -0.5231, -0.1731,  0.6801,  0.0933,\n        -0.8529, -0.0998, -0.1840,  0.6819,  0.3719,  0.2464, -0.3565, -0.4589,\n         0.5544,  1.7265, -0.2435, -0.2290, -0.4081, -1.5937, -0.0252, -0.6393,\n        -1.6204, -0.3930, -1.2818, -0.7108, -0.0629, -0.9336,  0.9471,  1.3022,\n         0.5237,  0.3245, -0.1613,  1.0443])"},"metadata":{}}]},{"cell_type":"code","source":"a = torch.Tensor()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:32:36.532584Z","iopub.execute_input":"2024-05-07T09:32:36.532944Z","iopub.status.idle":"2024-05-07T09:32:36.537870Z","shell.execute_reply.started":"2024-05-07T09:32:36.532917Z","shell.execute_reply":"2024-05-07T09:32:36.536831Z"},"trusted":true},"execution_count":267,"outputs":[]},{"cell_type":"code","source":"a.resize_(4,6,6)  # 4 tensors of 6x6","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:33:47.202626Z","iopub.execute_input":"2024-05-07T09:33:47.203010Z","iopub.status.idle":"2024-05-07T09:33:47.212549Z","shell.execute_reply.started":"2024-05-07T09:33:47.202987Z","shell.execute_reply":"2024-05-07T09:33:47.211209Z"},"trusted":true},"execution_count":269,"outputs":[{"execution_count":269,"output_type":"execute_result","data":{"text/plain":"tensor([[[-2.0850e-28,  4.3653e-41, -6.0651e+30,  4.3653e-41, -2.0851e-28,\n           4.3653e-41],\n         [-6.0651e+30,  4.3653e-41, -2.0844e-28,  4.3653e-41, -6.0651e+30,\n           4.3653e-41],\n         [-2.0839e-28,  4.3653e-41, -6.0651e+30,  4.3653e-41, -2.7501e-32,\n           4.3653e-41],\n         [-6.0651e+30,  4.3653e-41, -2.9975e-32,  4.3653e-41, -6.0651e+30,\n           4.3653e-41],\n         [-4.8531e-32,  4.3653e-41, -6.0651e+30,  4.3653e-41, -4.8491e-32,\n           4.3653e-41],\n         [-6.0651e+30,  4.3653e-41, -2.9982e-32,  4.3653e-41, -6.0651e+30,\n           4.3653e-41]],\n\n        [[-3.5313e-32,  4.3653e-41, -6.0651e+30,  4.3653e-41, -3.5303e-32,\n           4.3653e-41],\n         [-6.0651e+30,  4.3653e-41, -2.9959e-32,  4.3653e-41, -6.0651e+30,\n           4.3653e-41],\n         [-1.0503e-32,  4.3653e-41, -6.0651e+30,  4.3653e-41, -1.0506e-32,\n           4.3653e-41],\n         [-6.0651e+30,  4.3653e-41, -1.0506e-32,  4.3653e-41, -6.0651e+30,\n           4.3653e-41],\n         [-1.0498e-32,  4.3653e-41, -6.0651e+30,  4.3653e-41, -1.0506e-32,\n           4.3653e-41],\n         [-6.0651e+30,  4.3653e-41, -1.0507e-32,  4.3653e-41, -6.0651e+30,\n           4.3653e-41]],\n\n        [[-1.0500e-32,  4.3653e-41, -6.0651e+30,  4.3653e-41, -1.0498e-32,\n           4.3653e-41],\n         [-6.0651e+30,  4.3653e-41, -1.0505e-32,  4.3653e-41, -6.0651e+30,\n           4.3653e-41],\n         [-1.0507e-32,  4.3653e-41, -6.0651e+30,  4.3653e-41, -1.0500e-32,\n           4.3653e-41],\n         [-7.5660e+30,  4.3653e-41, -6.0651e+30,  4.3653e-41, -1.0497e-32,\n           4.3653e-41],\n         [-6.0651e+30,  4.3653e-41, -1.0508e-32,  4.3653e-41, -6.0651e+30,\n           4.3653e-41],\n         [-1.0503e-32,  4.3653e-41, -6.0651e+30,  4.3653e-41, -1.0500e-32,\n           4.3653e-41]],\n\n        [[-6.0651e+30,  4.3653e-41, -1.0496e-32,  4.3653e-41, -6.0651e+30,\n           4.3653e-41],\n         [-7.6796e+30,  4.3653e-41, -2.9986e-32,  4.3653e-41, -6.0651e+30,\n           4.3653e-41],\n         [-8.0106e+30,  4.3653e-41, -7.6796e+30,  4.3653e-41, -1.0501e-32,\n           4.3653e-41],\n         [-6.0651e+30,  4.3653e-41, -1.0498e-32,  4.3653e-41, -6.0651e+30,\n           4.3653e-41],\n         [-1.0498e-32,  4.3653e-41, -6.0651e+30,  4.3653e-41, -1.0497e-32,\n           4.3653e-41],\n         [-6.0651e+30,  4.3653e-41, -1.0506e-32,  4.3653e-41, -6.0651e+30,\n           4.3653e-41]]])"},"metadata":{}}]},{"cell_type":"code","source":"a = torch.Tensor([[1,2],[3,4]])","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:35:31.930840Z","iopub.execute_input":"2024-05-07T09:35:31.931199Z","iopub.status.idle":"2024-05-07T09:35:31.937257Z","shell.execute_reply.started":"2024-05-07T09:35:31.931176Z","shell.execute_reply":"2024-05-07T09:35:31.935844Z"},"trusted":true},"execution_count":275,"outputs":[]},{"cell_type":"code","source":"a.shape","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:35:32.345762Z","iopub.execute_input":"2024-05-07T09:35:32.346121Z","iopub.status.idle":"2024-05-07T09:35:32.351902Z","shell.execute_reply.started":"2024-05-07T09:35:32.346099Z","shell.execute_reply":"2024-05-07T09:35:32.350975Z"},"trusted":true},"execution_count":276,"outputs":[{"execution_count":276,"output_type":"execute_result","data":{"text/plain":"torch.Size([2, 2])"},"metadata":{}}]},{"cell_type":"code","source":"a = a.unsqueeze(1) # add dimension at position","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:36:11.332719Z","iopub.execute_input":"2024-05-07T09:36:11.333069Z","iopub.status.idle":"2024-05-07T09:36:11.338106Z","shell.execute_reply.started":"2024-05-07T09:36:11.333039Z","shell.execute_reply":"2024-05-07T09:36:11.336689Z"},"trusted":true},"execution_count":280,"outputs":[]},{"cell_type":"code","source":"a","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:36:24.262802Z","iopub.execute_input":"2024-05-07T09:36:24.263150Z","iopub.status.idle":"2024-05-07T09:36:24.270936Z","shell.execute_reply.started":"2024-05-07T09:36:24.263129Z","shell.execute_reply":"2024-05-07T09:36:24.270000Z"},"trusted":true},"execution_count":282,"outputs":[{"execution_count":282,"output_type":"execute_result","data":{"text/plain":"tensor([[[[[1., 2.],\n           [3., 4.]]]]])"},"metadata":{}}]},{"cell_type":"code","source":"a.shape","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:36:12.012695Z","iopub.execute_input":"2024-05-07T09:36:12.013073Z","iopub.status.idle":"2024-05-07T09:36:12.020575Z","shell.execute_reply.started":"2024-05-07T09:36:12.013048Z","shell.execute_reply":"2024-05-07T09:36:12.019098Z"},"trusted":true},"execution_count":281,"outputs":[{"execution_count":281,"output_type":"execute_result","data":{"text/plain":"torch.Size([1, 1, 1, 2, 2])"},"metadata":{}}]},{"cell_type":"code","source":"a =a.squeeze()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:36:51.597398Z","iopub.execute_input":"2024-05-07T09:36:51.597722Z","iopub.status.idle":"2024-05-07T09:36:51.603233Z","shell.execute_reply.started":"2024-05-07T09:36:51.597700Z","shell.execute_reply":"2024-05-07T09:36:51.601957Z"},"trusted":true},"execution_count":283,"outputs":[]},{"cell_type":"code","source":"a","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:36:52.908739Z","iopub.execute_input":"2024-05-07T09:36:52.909156Z","iopub.status.idle":"2024-05-07T09:36:52.916937Z","shell.execute_reply.started":"2024-05-07T09:36:52.909122Z","shell.execute_reply":"2024-05-07T09:36:52.915790Z"},"trusted":true},"execution_count":284,"outputs":[{"execution_count":284,"output_type":"execute_result","data":{"text/plain":"tensor([[1., 2.],\n        [3., 4.]])"},"metadata":{}}]},{"cell_type":"markdown","source":"#### MERGE Tensors using stack","metadata":{}},{"cell_type":"code","source":"a = torch.randn(size=(1,5))\n","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:41:58.495573Z","iopub.execute_input":"2024-05-07T09:41:58.495947Z","iopub.status.idle":"2024-05-07T09:41:58.501318Z","shell.execute_reply.started":"2024-05-07T09:41:58.495921Z","shell.execute_reply":"2024-05-07T09:41:58.499948Z"},"trusted":true},"execution_count":300,"outputs":[]},{"cell_type":"code","source":"a","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:42:00.694747Z","iopub.execute_input":"2024-05-07T09:42:00.695101Z","iopub.status.idle":"2024-05-07T09:42:00.702778Z","shell.execute_reply.started":"2024-05-07T09:42:00.695078Z","shell.execute_reply":"2024-05-07T09:42:00.701725Z"},"trusted":true},"execution_count":301,"outputs":[{"execution_count":301,"output_type":"execute_result","data":{"text/plain":"tensor([[0.0103, 1.3031, 0.3228, 0.0890, 0.3304]])"},"metadata":{}}]},{"cell_type":"code","source":"b = torch.randn(size=(1,5))","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:42:01.702591Z","iopub.execute_input":"2024-05-07T09:42:01.702933Z","iopub.status.idle":"2024-05-07T09:42:01.708202Z","shell.execute_reply.started":"2024-05-07T09:42:01.702910Z","shell.execute_reply":"2024-05-07T09:42:01.707047Z"},"trusted":true},"execution_count":302,"outputs":[]},{"cell_type":"code","source":"b","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:42:02.596689Z","iopub.execute_input":"2024-05-07T09:42:02.597729Z","iopub.status.idle":"2024-05-07T09:42:02.606203Z","shell.execute_reply.started":"2024-05-07T09:42:02.597701Z","shell.execute_reply":"2024-05-07T09:42:02.604862Z"},"trusted":true},"execution_count":303,"outputs":[{"execution_count":303,"output_type":"execute_result","data":{"text/plain":"tensor([[ 0.4404, -0.1593, -1.8755, -0.4402,  0.6662]])"},"metadata":{}}]},{"cell_type":"code","source":"c = torch.stack((a,b), dim=1)","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:42:04.195991Z","iopub.execute_input":"2024-05-07T09:42:04.196918Z","iopub.status.idle":"2024-05-07T09:42:04.202106Z","shell.execute_reply.started":"2024-05-07T09:42:04.196893Z","shell.execute_reply":"2024-05-07T09:42:04.200819Z"},"trusted":true},"execution_count":304,"outputs":[]},{"cell_type":"code","source":"c","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:42:05.196174Z","iopub.execute_input":"2024-05-07T09:42:05.196570Z","iopub.status.idle":"2024-05-07T09:42:05.204547Z","shell.execute_reply.started":"2024-05-07T09:42:05.196546Z","shell.execute_reply":"2024-05-07T09:42:05.203524Z"},"trusted":true},"execution_count":305,"outputs":[{"execution_count":305,"output_type":"execute_result","data":{"text/plain":"tensor([[[ 0.0103,  1.3031,  0.3228,  0.0890,  0.3304],\n         [ 0.4404, -0.1593, -1.8755, -0.4402,  0.6662]]])"},"metadata":{}}]},{"cell_type":"code","source":"c = torch.stack((a,b), dim = 0)","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:42:18.125859Z","iopub.execute_input":"2024-05-07T09:42:18.126256Z","iopub.status.idle":"2024-05-07T09:42:18.131408Z","shell.execute_reply.started":"2024-05-07T09:42:18.126232Z","shell.execute_reply":"2024-05-07T09:42:18.130196Z"},"trusted":true},"execution_count":306,"outputs":[]},{"cell_type":"code","source":"c","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:42:18.894558Z","iopub.execute_input":"2024-05-07T09:42:18.894910Z","iopub.status.idle":"2024-05-07T09:42:18.903300Z","shell.execute_reply.started":"2024-05-07T09:42:18.894886Z","shell.execute_reply":"2024-05-07T09:42:18.901676Z"},"trusted":true},"execution_count":307,"outputs":[{"execution_count":307,"output_type":"execute_result","data":{"text/plain":"tensor([[[ 0.0103,  1.3031,  0.3228,  0.0890,  0.3304]],\n\n        [[ 0.4404, -0.1593, -1.8755, -0.4402,  0.6662]]])"},"metadata":{}}]},{"cell_type":"code","source":"c = torch.stack((a,b))","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:42:21.485506Z","iopub.execute_input":"2024-05-07T09:42:21.485836Z","iopub.status.idle":"2024-05-07T09:42:21.490654Z","shell.execute_reply.started":"2024-05-07T09:42:21.485814Z","shell.execute_reply":"2024-05-07T09:42:21.489454Z"},"trusted":true},"execution_count":308,"outputs":[]},{"cell_type":"code","source":"c","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:42:22.155767Z","iopub.execute_input":"2024-05-07T09:42:22.156138Z","iopub.status.idle":"2024-05-07T09:42:22.163572Z","shell.execute_reply.started":"2024-05-07T09:42:22.156115Z","shell.execute_reply":"2024-05-07T09:42:22.162636Z"},"trusted":true},"execution_count":309,"outputs":[{"execution_count":309,"output_type":"execute_result","data":{"text/plain":"tensor([[[ 0.0103,  1.3031,  0.3228,  0.0890,  0.3304]],\n\n        [[ 0.4404, -0.1593, -1.8755, -0.4402,  0.6662]]])"},"metadata":{}}]},{"cell_type":"code","source":"x = torch.tensor([1.,3.,6.,10.]) \ny = torch.tensor([2.,7.,9.,13.]) ","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:42:54.495744Z","iopub.execute_input":"2024-05-07T09:42:54.496098Z","iopub.status.idle":"2024-05-07T09:42:54.501259Z","shell.execute_reply.started":"2024-05-07T09:42:54.496076Z","shell.execute_reply":"2024-05-07T09:42:54.500133Z"},"trusted":true},"execution_count":310,"outputs":[]},{"cell_type":"code","source":"z = torch.stack((x,y))","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:43:07.430477Z","iopub.execute_input":"2024-05-07T09:43:07.430976Z","iopub.status.idle":"2024-05-07T09:43:07.436151Z","shell.execute_reply.started":"2024-05-07T09:43:07.430953Z","shell.execute_reply":"2024-05-07T09:43:07.434877Z"},"trusted":true},"execution_count":311,"outputs":[]},{"cell_type":"code","source":"z","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:43:08.895379Z","iopub.execute_input":"2024-05-07T09:43:08.895782Z","iopub.status.idle":"2024-05-07T09:43:08.903311Z","shell.execute_reply.started":"2024-05-07T09:43:08.895756Z","shell.execute_reply":"2024-05-07T09:43:08.902409Z"},"trusted":true},"execution_count":312,"outputs":[{"execution_count":312,"output_type":"execute_result","data":{"text/plain":"tensor([[ 1.,  3.,  6., 10.],\n        [ 2.,  7.,  9., 13.]])"},"metadata":{}}]},{"cell_type":"code","source":"z = torch.stack((x,y), dim = 1)","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:43:24.802974Z","iopub.execute_input":"2024-05-07T09:43:24.803397Z","iopub.status.idle":"2024-05-07T09:43:24.809077Z","shell.execute_reply.started":"2024-05-07T09:43:24.803369Z","shell.execute_reply":"2024-05-07T09:43:24.807642Z"},"trusted":true},"execution_count":313,"outputs":[]},{"cell_type":"code","source":"z","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:46:39.872764Z","iopub.execute_input":"2024-05-07T09:46:39.873118Z","iopub.status.idle":"2024-05-07T09:46:39.882771Z","shell.execute_reply.started":"2024-05-07T09:46:39.873096Z","shell.execute_reply":"2024-05-07T09:46:39.881280Z"},"trusted":true},"execution_count":319,"outputs":[{"execution_count":319,"output_type":"execute_result","data":{"text/plain":"tensor([[ 1.,  2.],\n        [ 3.,  7.],\n        [ 6.,  9.],\n        [10., 13.]])"},"metadata":{}}]},{"cell_type":"code","source":"z[:2,1] # from 2 rows and second parameter as z[,1]","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:51:09.381246Z","iopub.execute_input":"2024-05-07T09:51:09.381637Z","iopub.status.idle":"2024-05-07T09:51:09.390058Z","shell.execute_reply.started":"2024-05-07T09:51:09.381613Z","shell.execute_reply":"2024-05-07T09:51:09.388722Z"},"trusted":true},"execution_count":323,"outputs":[{"execution_count":323,"output_type":"execute_result","data":{"text/plain":"tensor([2., 7.])"},"metadata":{}}]},{"cell_type":"markdown","source":"#### SEEDING","metadata":{}},{"cell_type":"code","source":"RANDOM_SEED = 42","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:54:17.953085Z","iopub.execute_input":"2024-05-07T09:54:17.953466Z","iopub.status.idle":"2024-05-07T09:54:17.957946Z","shell.execute_reply.started":"2024-05-07T09:54:17.953401Z","shell.execute_reply":"2024-05-07T09:54:17.956621Z"},"trusted":true},"execution_count":324,"outputs":[]},{"cell_type":"code","source":"torch.manual_seed(RANDOM_SEED)","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:54:48.402972Z","iopub.execute_input":"2024-05-07T09:54:48.403331Z","iopub.status.idle":"2024-05-07T09:54:48.412152Z","shell.execute_reply.started":"2024-05-07T09:54:48.403308Z","shell.execute_reply":"2024-05-07T09:54:48.410842Z"},"trusted":true},"execution_count":327,"outputs":[{"execution_count":327,"output_type":"execute_result","data":{"text/plain":"<torch._C.Generator at 0x79b0bed4b170>"},"metadata":{}}]},{"cell_type":"code","source":"a = torch.rand((3,3))","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:54:52.281673Z","iopub.execute_input":"2024-05-07T09:54:52.282058Z","iopub.status.idle":"2024-05-07T09:54:52.286987Z","shell.execute_reply.started":"2024-05-07T09:54:52.282031Z","shell.execute_reply":"2024-05-07T09:54:52.286004Z"},"trusted":true},"execution_count":328,"outputs":[]},{"cell_type":"code","source":"a","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:54:53.180775Z","iopub.execute_input":"2024-05-07T09:54:53.181136Z","iopub.status.idle":"2024-05-07T09:54:53.187957Z","shell.execute_reply.started":"2024-05-07T09:54:53.181112Z","shell.execute_reply":"2024-05-07T09:54:53.187207Z"},"trusted":true},"execution_count":329,"outputs":[{"execution_count":329,"output_type":"execute_result","data":{"text/plain":"tensor([[0.8823, 0.9150, 0.3829],\n        [0.9593, 0.3904, 0.6009],\n        [0.2566, 0.7936, 0.9408]])"},"metadata":{}}]},{"cell_type":"code","source":"torch.manual_seed(RANDOM_SEED)","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:55:12.981093Z","iopub.execute_input":"2024-05-07T09:55:12.981429Z","iopub.status.idle":"2024-05-07T09:55:12.989792Z","shell.execute_reply.started":"2024-05-07T09:55:12.981407Z","shell.execute_reply":"2024-05-07T09:55:12.988847Z"},"trusted":true},"execution_count":330,"outputs":[{"execution_count":330,"output_type":"execute_result","data":{"text/plain":"<torch._C.Generator at 0x79b0bed4b170>"},"metadata":{}}]},{"cell_type":"code","source":"b = torch.rand((3,3))","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:55:24.562766Z","iopub.execute_input":"2024-05-07T09:55:24.563164Z","iopub.status.idle":"2024-05-07T09:55:24.568089Z","shell.execute_reply.started":"2024-05-07T09:55:24.563139Z","shell.execute_reply":"2024-05-07T09:55:24.566983Z"},"trusted":true},"execution_count":331,"outputs":[]},{"cell_type":"code","source":"b","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:55:25.707293Z","iopub.execute_input":"2024-05-07T09:55:25.707635Z","iopub.status.idle":"2024-05-07T09:55:25.715900Z","shell.execute_reply.started":"2024-05-07T09:55:25.707611Z","shell.execute_reply":"2024-05-07T09:55:25.714892Z"},"trusted":true},"execution_count":332,"outputs":[{"execution_count":332,"output_type":"execute_result","data":{"text/plain":"tensor([[0.8823, 0.9150, 0.3829],\n        [0.9593, 0.3904, 0.6009],\n        [0.2566, 0.7936, 0.9408]])"},"metadata":{}}]},{"cell_type":"code","source":"a == b","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:55:32.450172Z","iopub.execute_input":"2024-05-07T09:55:32.450526Z","iopub.status.idle":"2024-05-07T09:55:32.457365Z","shell.execute_reply.started":"2024-05-07T09:55:32.450503Z","shell.execute_reply":"2024-05-07T09:55:32.456082Z"},"trusted":true},"execution_count":333,"outputs":[{"execution_count":333,"output_type":"execute_result","data":{"text/plain":"tensor([[True, True, True],\n        [True, True, True],\n        [True, True, True]])"},"metadata":{}}]},{"cell_type":"code","source":"!nvidia-smi","metadata":{"execution":{"iopub.status.busy":"2024-05-07T09:59:08.666248Z","iopub.execute_input":"2024-05-07T09:59:08.666630Z","iopub.status.idle":"2024-05-07T09:59:08.982645Z","shell.execute_reply.started":"2024-05-07T09:59:08.666606Z","shell.execute_reply":"2024-05-07T09:59:08.980946Z"},"trusted":true},"execution_count":334,"outputs":[{"name":"stdout","text":"/bin/bash: nvidia-smi: command not found\n","output_type":"stream"}]},{"cell_type":"markdown","source":"## Accessing GPU","metadata":{}},{"cell_type":"code","source":"torch.cuda.is_available()","metadata":{"execution":{"iopub.status.busy":"2024-05-07T10:00:34.389173Z","iopub.execute_input":"2024-05-07T10:00:34.389505Z","iopub.status.idle":"2024-05-07T10:00:34.396540Z","shell.execute_reply.started":"2024-05-07T10:00:34.389482Z","shell.execute_reply":"2024-05-07T10:00:34.395382Z"},"trusted":true},"execution_count":335,"outputs":[{"execution_count":335,"output_type":"execute_result","data":{"text/plain":"False"},"metadata":{}}]},{"cell_type":"code","source":"","metadata":{},"execution_count":null,"outputs":[]}]}
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "15e521a3",
+   "metadata": {
+    "papermill": {
+     "duration": 0.035323,
+     "end_time": "2024-05-07T11:00:04.919348",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:04.884025",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "# PYTORCH TUTORIALS"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "88e91de1",
+   "metadata": {
+    "papermill": {
+     "duration": 0.033479,
+     "end_time": "2024-05-07T11:00:04.986601",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:04.953122",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    " #### Artificial intelligence (AI) is the simulation of human intelligence processes by machines, especially computer systems. It involves the development of AI algorithms, modeled after the decision-making processes of the human brain, that can “learn” from available data and make increasingly more accurate classifications or predictions over time. AI is an umbrella term that encompasses a wide variety of technologies, including machine learning, deep learning, and natural language processing (NLP)."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "1a8d31e0",
+   "metadata": {
+    "papermill": {
+     "duration": 0.033694,
+     "end_time": "2024-05-07T11:00:05.054039",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:05.020345",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "#### Machine Learning (ML): ML is a subset of AI that focuses on developing algorithms and statistical models that enable machines to learn from data without being explicitly programmed. ML is a type of AI that allows systems to improve their performance on a task over time, based on the data they receive.\n",
+    "\n",
+    "#### Deep Learning (DL): DL is a subset of ML that uses neural networks, which are modeled after the human brain, to analyze and interpret data. DL algorithms can learn to recognize patterns and make predictions by processing large amounts of data. DL is particularly effective for tasks such as image and speech recognition, natural language processing, and game playing."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b2f7a986",
+   "metadata": {
+    "papermill": {
+     "duration": 0.033298,
+     "end_time": "2024-05-07T11:00:05.121073",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:05.087775",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "**Supervised Learning: In supervised learning, the machine is trained on a set of labeled data, where the input data is paired with the desired output. The machine learns to predict the output for new input data by finding the relationship between the input and output data. The goal of supervised learning is to learn a function that can accurately map inputs to outputs. This approach is useful for tasks such as image classification, speech recognition, and sentiment analysis.**\n",
+    "\n",
+    "**Unsupervised Learning: In unsupervised learning, the machine is trained on a set of unlabeled data, and it must find patterns or structure in the data on its own. The machine learns to group similar data points together or identify clusters, without any prior knowledge of the expected output. This approach is useful for tasks such as anomaly detection, clustering, and dimensionality reduction.**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b953419f",
+   "metadata": {
+    "papermill": {
+     "duration": 0.033039,
+     "end_time": "2024-05-07T11:00:05.188265",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:05.155226",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "**Reinforcement Learning (RL) is a machine learning (ML) technique that teaches software to make decisions to achieve a goal by interacting with an environment. It's similar to how humans learn through trial and error.**"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "73b83e21",
+   "metadata": {
+    "papermill": {
+     "duration": 0.033782,
+     "end_time": "2024-05-07T11:00:05.256061",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:05.222279",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "### What is Pytorch ?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "56f94be6",
+   "metadata": {
+    "papermill": {
+     "duration": 0.086775,
+     "end_time": "2024-05-07T11:00:05.376289",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:05.289514",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "### PyTorch is a machine learning library based on the Torch library, used for applications such as computer vision and natural language processing.\n",
+    "### Pytorch is an open-source deep learning framework available with a Python and C++ interface."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "54ad8872",
+   "metadata": {
+    "papermill": {
+     "duration": 0.033647,
+     "end_time": "2024-05-07T11:00:05.443442",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:05.409795",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "### Tensor : Tensors are the fundamental data structure of PyTorch. They are n-dimensional arrays that can be used to represent data such as images, audio, and text. Tensors can also be used to store the parameters of a machine learning model."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c640be87",
+   "metadata": {
+    "papermill": {
+     "duration": 0.033034,
+     "end_time": "2024-05-07T11:00:05.510190",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:05.477156",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "### Lets start :-"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "9fdb6d85",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:05.578469Z",
+     "iopub.status.busy": "2024-05-07T11:00:05.578122Z",
+     "iopub.status.idle": "2024-05-07T11:00:09.991541Z",
+     "shell.execute_reply": "2024-05-07T11:00:09.990517Z"
+    },
+    "papermill": {
+     "duration": 4.450473,
+     "end_time": "2024-05-07T11:00:09.994063",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:05.543590",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "import torch\n",
+    "import pandas as pd\n",
+    "import numpy as np\n",
+    "import matplotlib.pyplot as plt\n",
+    "from torch import nn"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "16f7278d",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:10.066605Z",
+     "iopub.status.busy": "2024-05-07T11:00:10.066117Z",
+     "iopub.status.idle": "2024-05-07T11:00:10.073107Z",
+     "shell.execute_reply": "2024-05-07T11:00:10.072233Z"
+    },
+    "papermill": {
+     "duration": 0.04495,
+     "end_time": "2024-05-07T11:00:10.075173",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:10.030223",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'2.1.2'"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "torch.__version__"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9829754f",
+   "metadata": {
+    "papermill": {
+     "duration": 0.033369,
+     "end_time": "2024-05-07T11:00:10.141997",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:10.108628",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "#### Tensor is a multi-dimensional matrix containing elements of single DataType. float,double,int,char"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "df5b5cf8",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:10.211776Z",
+     "iopub.status.busy": "2024-05-07T11:00:10.210879Z",
+     "iopub.status.idle": "2024-05-07T11:00:10.221580Z",
+     "shell.execute_reply": "2024-05-07T11:00:10.220697Z"
+    },
+    "papermill": {
+     "duration": 0.047938,
+     "end_time": "2024-05-07T11:00:10.223631",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:10.175693",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "scalar = torch.Tensor(7)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "778e6632",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:10.294109Z",
+     "iopub.status.busy": "2024-05-07T11:00:10.293105Z",
+     "iopub.status.idle": "2024-05-07T11:00:10.371504Z",
+     "shell.execute_reply": "2024-05-07T11:00:10.370554Z"
+    },
+    "papermill": {
+     "duration": 0.116326,
+     "end_time": "2024-05-07T11:00:10.373715",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:10.257389",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([1.3926e+23, 4.4117e-41, 1.3926e+23, 4.4117e-41, 1.3797e+23, 4.4117e-41,\n",
+       "        1.3797e+23])"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "scalar"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "7c5fa26a",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:10.443753Z",
+     "iopub.status.busy": "2024-05-07T11:00:10.443018Z",
+     "iopub.status.idle": "2024-05-07T11:00:10.448987Z",
+     "shell.execute_reply": "2024-05-07T11:00:10.448105Z"
+    },
+    "papermill": {
+     "duration": 0.043347,
+     "end_time": "2024-05-07T11:00:10.451025",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:10.407678",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "1"
+      ]
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "scalar.ndim # number of dimensions\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "9dbedb60",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:10.522853Z",
+     "iopub.status.busy": "2024-05-07T11:00:10.522012Z",
+     "iopub.status.idle": "2024-05-07T11:00:10.528342Z",
+     "shell.execute_reply": "2024-05-07T11:00:10.527481Z"
+    },
+    "papermill": {
+     "duration": 0.045004,
+     "end_time": "2024-05-07T11:00:10.530202",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:10.485198",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "1"
+      ]
+     },
+     "execution_count": 6,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "scalar.dense_dim()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "7ac542ae",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:10.601156Z",
+     "iopub.status.busy": "2024-05-07T11:00:10.600315Z",
+     "iopub.status.idle": "2024-05-07T11:00:10.604905Z",
+     "shell.execute_reply": "2024-05-07T11:00:10.604008Z"
+    },
+    "papermill": {
+     "duration": 0.041867,
+     "end_time": "2024-05-07T11:00:10.606799",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:10.564932",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "scalar = torch.Tensor([7])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "534d1d36",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:10.677626Z",
+     "iopub.status.busy": "2024-05-07T11:00:10.677033Z",
+     "iopub.status.idle": "2024-05-07T11:00:10.682707Z",
+     "shell.execute_reply": "2024-05-07T11:00:10.681865Z"
+    },
+    "papermill": {
+     "duration": 0.043428,
+     "end_time": "2024-05-07T11:00:10.684782",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:10.641354",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "7.0"
+      ]
+     },
+     "execution_count": 8,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "scalar.item()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "188358a1",
+   "metadata": {
+    "papermill": {
+     "duration": 0.034496,
+     "end_time": "2024-05-07T11:00:10.753823",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:10.719327",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "#### Vector's"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "2d1c5f65",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:10.824121Z",
+     "iopub.status.busy": "2024-05-07T11:00:10.823318Z",
+     "iopub.status.idle": "2024-05-07T11:00:10.827640Z",
+     "shell.execute_reply": "2024-05-07T11:00:10.826786Z"
+    },
+    "papermill": {
+     "duration": 0.041555,
+     "end_time": "2024-05-07T11:00:10.829586",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:10.788031",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "vector = torch.Tensor([7,7])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "e83b4bb0",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:10.900366Z",
+     "iopub.status.busy": "2024-05-07T11:00:10.899529Z",
+     "iopub.status.idle": "2024-05-07T11:00:10.906030Z",
+     "shell.execute_reply": "2024-05-07T11:00:10.905157Z"
+    },
+    "papermill": {
+     "duration": 0.043438,
+     "end_time": "2024-05-07T11:00:10.907924",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:10.864486",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([7., 7.])"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "vector"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "5821a2ed",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:10.977378Z",
+     "iopub.status.busy": "2024-05-07T11:00:10.976563Z",
+     "iopub.status.idle": "2024-05-07T11:00:10.982290Z",
+     "shell.execute_reply": "2024-05-07T11:00:10.981456Z"
+    },
+    "papermill": {
+     "duration": 0.042685,
+     "end_time": "2024-05-07T11:00:10.984293",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:10.941608",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "torch.Size([2])"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "vector.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "830f6ff0",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:11.054088Z",
+     "iopub.status.busy": "2024-05-07T11:00:11.053742Z",
+     "iopub.status.idle": "2024-05-07T11:00:11.059684Z",
+     "shell.execute_reply": "2024-05-07T11:00:11.058822Z"
+    },
+    "papermill": {
+     "duration": 0.043599,
+     "end_time": "2024-05-07T11:00:11.061632",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:11.018033",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "1"
+      ]
+     },
+     "execution_count": 12,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "vector.dense_dim()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "32d1fb60",
+   "metadata": {
+    "papermill": {
+     "duration": 0.034247,
+     "end_time": "2024-05-07T11:00:11.130514",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:11.096267",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "#### Matrix"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "e095c7b2",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:11.201583Z",
+     "iopub.status.busy": "2024-05-07T11:00:11.200880Z",
+     "iopub.status.idle": "2024-05-07T11:00:11.205545Z",
+     "shell.execute_reply": "2024-05-07T11:00:11.204697Z"
+    },
+    "papermill": {
+     "duration": 0.042541,
+     "end_time": "2024-05-07T11:00:11.207487",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:11.164946",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "matrix = torch.Tensor([[1,2],[3,4]])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "f7623571",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:11.279119Z",
+     "iopub.status.busy": "2024-05-07T11:00:11.278376Z",
+     "iopub.status.idle": "2024-05-07T11:00:11.285228Z",
+     "shell.execute_reply": "2024-05-07T11:00:11.284322Z"
+    },
+    "papermill": {
+     "duration": 0.045044,
+     "end_time": "2024-05-07T11:00:11.287108",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:11.242064",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[1., 2.],\n",
+       "        [3., 4.]])"
+      ]
+     },
+     "execution_count": 14,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "matrix"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "e79dc3c0",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:11.360353Z",
+     "iopub.status.busy": "2024-05-07T11:00:11.359588Z",
+     "iopub.status.idle": "2024-05-07T11:00:11.365615Z",
+     "shell.execute_reply": "2024-05-07T11:00:11.364701Z"
+    },
+    "papermill": {
+     "duration": 0.045643,
+     "end_time": "2024-05-07T11:00:11.367691",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:11.322048",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "torch.Size([2, 2])"
+      ]
+     },
+     "execution_count": 15,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "matrix.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "81bb2ab3",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:11.439725Z",
+     "iopub.status.busy": "2024-05-07T11:00:11.439112Z",
+     "iopub.status.idle": "2024-05-07T11:00:11.447254Z",
+     "shell.execute_reply": "2024-05-07T11:00:11.446354Z"
+    },
+    "papermill": {
+     "duration": 0.04627,
+     "end_time": "2024-05-07T11:00:11.449299",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:11.403029",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[2., 4.],\n",
+       "        [6., 8.]])"
+      ]
+     },
+     "execution_count": 16,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "matrix*2 # same as other operations"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "5589ff63",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:11.521353Z",
+     "iopub.status.busy": "2024-05-07T11:00:11.520743Z",
+     "iopub.status.idle": "2024-05-07T11:00:11.524859Z",
+     "shell.execute_reply": "2024-05-07T11:00:11.523927Z"
+    },
+    "papermill": {
+     "duration": 0.042143,
+     "end_time": "2024-05-07T11:00:11.526771",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:11.484628",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# matrix-[2] #error"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "id": "10171914",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:11.600377Z",
+     "iopub.status.busy": "2024-05-07T11:00:11.599541Z",
+     "iopub.status.idle": "2024-05-07T11:00:11.607813Z",
+     "shell.execute_reply": "2024-05-07T11:00:11.606904Z"
+    },
+    "papermill": {
+     "duration": 0.04772,
+     "end_time": "2024-05-07T11:00:11.609752",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:11.562032",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[3., 4.],\n",
+       "        [5., 6.]])"
+      ]
+     },
+     "execution_count": 18,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "matrix+2"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "id": "415fde6c",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:11.682392Z",
+     "iopub.status.busy": "2024-05-07T11:00:11.681583Z",
+     "iopub.status.idle": "2024-05-07T11:00:11.685928Z",
+     "shell.execute_reply": "2024-05-07T11:00:11.685051Z"
+    },
+    "papermill": {
+     "duration": 0.042625,
+     "end_time": "2024-05-07T11:00:11.687796",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:11.645171",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "combined= matrix+vector+scalar"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "id": "a96c452a",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:11.760523Z",
+     "iopub.status.busy": "2024-05-07T11:00:11.759813Z",
+     "iopub.status.idle": "2024-05-07T11:00:11.766443Z",
+     "shell.execute_reply": "2024-05-07T11:00:11.765577Z"
+    },
+    "papermill": {
+     "duration": 0.045201,
+     "end_time": "2024-05-07T11:00:11.768416",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:11.723215",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[15., 16.],\n",
+       "        [17., 18.]])"
+      ]
+     },
+     "execution_count": 20,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "combined"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "id": "39ac481c",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:11.841007Z",
+     "iopub.status.busy": "2024-05-07T11:00:11.840613Z",
+     "iopub.status.idle": "2024-05-07T11:00:11.847293Z",
+     "shell.execute_reply": "2024-05-07T11:00:11.846406Z"
+    },
+    "papermill": {
+     "duration": 0.045518,
+     "end_time": "2024-05-07T11:00:11.849215",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:11.803697",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[1., 2.],\n",
+       "        [3., 4.]])"
+      ]
+     },
+     "execution_count": 21,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "matrix"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 22,
+   "id": "60f1e856",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:11.921439Z",
+     "iopub.status.busy": "2024-05-07T11:00:11.921095Z",
+     "iopub.status.idle": "2024-05-07T11:00:11.930303Z",
+     "shell.execute_reply": "2024-05-07T11:00:11.929407Z"
+    },
+    "papermill": {
+     "duration": 0.047773,
+     "end_time": "2024-05-07T11:00:11.932199",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:11.884426",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "matrix = matrix[:1,:2]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "id": "75be0441",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:12.004117Z",
+     "iopub.status.busy": "2024-05-07T11:00:12.003767Z",
+     "iopub.status.idle": "2024-05-07T11:00:12.010277Z",
+     "shell.execute_reply": "2024-05-07T11:00:12.009396Z"
+    },
+    "papermill": {
+     "duration": 0.044779,
+     "end_time": "2024-05-07T11:00:12.012149",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:11.967370",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[1., 2.]])"
+      ]
+     },
+     "execution_count": 23,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "matrix"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "id": "ccce8fe8",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:12.084850Z",
+     "iopub.status.busy": "2024-05-07T11:00:12.084123Z",
+     "iopub.status.idle": "2024-05-07T11:00:12.088831Z",
+     "shell.execute_reply": "2024-05-07T11:00:12.087911Z"
+    },
+    "papermill": {
+     "duration": 0.042964,
+     "end_time": "2024-05-07T11:00:12.090738",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:12.047774",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "matrix = torch.Tensor([1,-2,3,-4,5,6,-7,8])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 25,
+   "id": "3e0de2af",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:12.164883Z",
+     "iopub.status.busy": "2024-05-07T11:00:12.164515Z",
+     "iopub.status.idle": "2024-05-07T11:00:12.169107Z",
+     "shell.execute_reply": "2024-05-07T11:00:12.168261Z"
+    },
+    "papermill": {
+     "duration": 0.043586,
+     "end_time": "2024-05-07T11:00:12.171021",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:12.127435",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "matrix = matrix.view(2,4) # change size/shape of a tensor "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 26,
+   "id": "0d013901",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:12.244477Z",
+     "iopub.status.busy": "2024-05-07T11:00:12.244120Z",
+     "iopub.status.idle": "2024-05-07T11:00:12.250962Z",
+     "shell.execute_reply": "2024-05-07T11:00:12.250104Z"
+    },
+    "papermill": {
+     "duration": 0.045599,
+     "end_time": "2024-05-07T11:00:12.252845",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:12.207246",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[ 1., -2.,  3., -4.],\n",
+       "        [ 5.,  6., -7.,  8.]])"
+      ]
+     },
+     "execution_count": 26,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "matrix"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 27,
+   "id": "1492378d",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:12.329224Z",
+     "iopub.status.busy": "2024-05-07T11:00:12.328337Z",
+     "iopub.status.idle": "2024-05-07T11:00:12.337002Z",
+     "shell.execute_reply": "2024-05-07T11:00:12.335859Z"
+    },
+    "papermill": {
+     "duration": 0.0485,
+     "end_time": "2024-05-07T11:00:12.339225",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:12.290725",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[ 1., -2.,  3.],\n",
+       "        [ 5.,  6., -7.]])"
+      ]
+     },
+     "execution_count": 27,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "matrix[:,:3]\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "id": "aad7d3a6",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:12.415542Z",
+     "iopub.status.busy": "2024-05-07T11:00:12.414904Z",
+     "iopub.status.idle": "2024-05-07T11:00:12.421507Z",
+     "shell.execute_reply": "2024-05-07T11:00:12.420690Z"
+    },
+    "papermill": {
+     "duration": 0.046765,
+     "end_time": "2024-05-07T11:00:12.423451",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:12.376686",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[1., 2., 3., 4.],\n",
+       "        [5., 6., 7., 8.]])"
+      ]
+     },
+     "execution_count": 28,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "matrix.abs()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "id": "34a2d8c4",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:12.497824Z",
+     "iopub.status.busy": "2024-05-07T11:00:12.497109Z",
+     "iopub.status.idle": "2024-05-07T11:00:12.503959Z",
+     "shell.execute_reply": "2024-05-07T11:00:12.503081Z"
+    },
+    "papermill": {
+     "duration": 0.045965,
+     "end_time": "2024-05-07T11:00:12.505889",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:12.459924",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[ 1.1752e+00, -3.6269e+00,  1.0018e+01, -2.7290e+01],\n",
+       "        [ 7.4203e+01,  2.0171e+02, -5.4832e+02,  1.4905e+03]])"
+      ]
+     },
+     "execution_count": 29,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "matrix.sinh()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 30,
+   "id": "dc9df5a9",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:12.579714Z",
+     "iopub.status.busy": "2024-05-07T11:00:12.578847Z",
+     "iopub.status.idle": "2024-05-07T11:00:12.585538Z",
+     "shell.execute_reply": "2024-05-07T11:00:12.584680Z"
+    },
+    "papermill": {
+     "duration": 0.045744,
+     "end_time": "2024-05-07T11:00:12.587532",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:12.541788",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[ 1., -2.,  3., -4.],\n",
+       "        [ 5.,  6., -7.,  8.]])"
+      ]
+     },
+     "execution_count": 30,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "matrix"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 31,
+   "id": "d644271e",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:12.663025Z",
+     "iopub.status.busy": "2024-05-07T11:00:12.662648Z",
+     "iopub.status.idle": "2024-05-07T11:00:12.698485Z",
+     "shell.execute_reply": "2024-05-07T11:00:12.697501Z"
+    },
+    "papermill": {
+     "duration": 0.076843,
+     "end_time": "2024-05-07T11:00:12.700682",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:12.623839",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[ 0.8415, -0.9093,  0.1411,  0.7568],\n",
+       "        [-0.9589, -0.2794, -0.6570,  0.9894]])"
+      ]
+     },
+     "execution_count": 31,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "matrix.sin()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 32,
+   "id": "77332009",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:12.775529Z",
+     "iopub.status.busy": "2024-05-07T11:00:12.775163Z",
+     "iopub.status.idle": "2024-05-07T11:00:12.781484Z",
+     "shell.execute_reply": "2024-05-07T11:00:12.780587Z"
+    },
+    "papermill": {
+     "duration": 0.046624,
+     "end_time": "2024-05-07T11:00:12.783465",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:12.736841",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "rng = torch.arange(0,10)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "id": "89c5b83d",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:12.858062Z",
+     "iopub.status.busy": "2024-05-07T11:00:12.857242Z",
+     "iopub.status.idle": "2024-05-07T11:00:12.863539Z",
+     "shell.execute_reply": "2024-05-07T11:00:12.862719Z"
+    },
+    "papermill": {
+     "duration": 0.045678,
+     "end_time": "2024-05-07T11:00:12.865514",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:12.819836",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])"
+      ]
+     },
+     "execution_count": 33,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rng"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "id": "4215f0db",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:12.940128Z",
+     "iopub.status.busy": "2024-05-07T11:00:12.939470Z",
+     "iopub.status.idle": "2024-05-07T11:00:12.944068Z",
+     "shell.execute_reply": "2024-05-07T11:00:12.943166Z"
+    },
+    "papermill": {
+     "duration": 0.044053,
+     "end_time": "2024-05-07T11:00:12.946031",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:12.901978",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "rng = torch.arange(0,10.2,0.2) # 0-10 at 0.2 gap, take start and end accordingly"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "id": "d4fafd30",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:13.021576Z",
+     "iopub.status.busy": "2024-05-07T11:00:13.020719Z",
+     "iopub.status.idle": "2024-05-07T11:00:13.027773Z",
+     "shell.execute_reply": "2024-05-07T11:00:13.026917Z"
+    },
+    "papermill": {
+     "duration": 0.046995,
+     "end_time": "2024-05-07T11:00:13.029838",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:12.982843",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([ 0.0000,  0.2000,  0.4000,  0.6000,  0.8000,  1.0000,  1.2000,  1.4000,\n",
+       "         1.6000,  1.8000,  2.0000,  2.2000,  2.4000,  2.6000,  2.8000,  3.0000,\n",
+       "         3.2000,  3.4000,  3.6000,  3.8000,  4.0000,  4.2000,  4.4000,  4.6000,\n",
+       "         4.8000,  5.0000,  5.2000,  5.4000,  5.6000,  5.8000,  6.0000,  6.2000,\n",
+       "         6.4000,  6.6000,  6.8000,  7.0000,  7.2000,  7.4000,  7.6000,  7.8000,\n",
+       "         8.0000,  8.2000,  8.4000,  8.6000,  8.8000,  9.0000,  9.2000,  9.4000,\n",
+       "         9.6000,  9.8000, 10.0000])"
+      ]
+     },
+     "execution_count": 35,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rng"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "id": "3923e1cc",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:13.105440Z",
+     "iopub.status.busy": "2024-05-07T11:00:13.105089Z",
+     "iopub.status.idle": "2024-05-07T11:00:13.109359Z",
+     "shell.execute_reply": "2024-05-07T11:00:13.108540Z"
+    },
+    "papermill": {
+     "duration": 0.044002,
+     "end_time": "2024-05-07T11:00:13.111224",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:13.067222",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "x = rng.numpy()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 37,
+   "id": "c2646d4e",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:13.186878Z",
+     "iopub.status.busy": "2024-05-07T11:00:13.186510Z",
+     "iopub.status.idle": "2024-05-07T11:00:13.193250Z",
+     "shell.execute_reply": "2024-05-07T11:00:13.192357Z"
+    },
+    "papermill": {
+     "duration": 0.047446,
+     "end_time": "2024-05-07T11:00:13.195452",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:13.148006",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "array([ 0.       ,  0.2      ,  0.4      ,  0.6      ,  0.8      ,\n",
+       "        1.       ,  1.2      ,  1.4      ,  1.6      ,  1.8000001,\n",
+       "        2.       ,  2.2      ,  2.4      ,  2.6      ,  2.8      ,\n",
+       "        3.       ,  3.2      ,  3.4      ,  3.6000001,  3.8      ,\n",
+       "        4.       ,  4.2      ,  4.4      ,  4.6      ,  4.8      ,\n",
+       "        5.       ,  5.2000003,  5.4      ,  5.6000004,  5.8      ,\n",
+       "        6.       ,  6.2000003,  6.4      ,  6.6      ,  6.8      ,\n",
+       "        7.       ,  7.2000003,  7.4      ,  7.6      ,  7.8      ,\n",
+       "        8.       ,  8.2      ,  8.4      ,  8.6      ,  8.8      ,\n",
+       "        9.       ,  9.2      ,  9.4      ,  9.6      ,  9.8      ,\n",
+       "       10.       ], dtype=float32)"
+      ]
+     },
+     "execution_count": 37,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 38,
+   "id": "06330952",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:13.272378Z",
+     "iopub.status.busy": "2024-05-07T11:00:13.272040Z",
+     "iopub.status.idle": "2024-05-07T11:00:13.276634Z",
+     "shell.execute_reply": "2024-05-07T11:00:13.275710Z"
+    },
+    "papermill": {
+     "duration": 0.044224,
+     "end_time": "2024-05-07T11:00:13.278527",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:13.234303",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "rng = torch.from_numpy(x)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "id": "afb2d25a",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:13.355039Z",
+     "iopub.status.busy": "2024-05-07T11:00:13.354683Z",
+     "iopub.status.idle": "2024-05-07T11:00:13.361640Z",
+     "shell.execute_reply": "2024-05-07T11:00:13.360792Z"
+    },
+    "papermill": {
+     "duration": 0.04764,
+     "end_time": "2024-05-07T11:00:13.363593",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:13.315953",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([ 0.0000,  0.2000,  0.4000,  0.6000,  0.8000,  1.0000,  1.2000,  1.4000,\n",
+       "         1.6000,  1.8000,  2.0000,  2.2000,  2.4000,  2.6000,  2.8000,  3.0000,\n",
+       "         3.2000,  3.4000,  3.6000,  3.8000,  4.0000,  4.2000,  4.4000,  4.6000,\n",
+       "         4.8000,  5.0000,  5.2000,  5.4000,  5.6000,  5.8000,  6.0000,  6.2000,\n",
+       "         6.4000,  6.6000,  6.8000,  7.0000,  7.2000,  7.4000,  7.6000,  7.8000,\n",
+       "         8.0000,  8.2000,  8.4000,  8.6000,  8.8000,  9.0000,  9.2000,  9.4000,\n",
+       "         9.6000,  9.8000, 10.0000])"
+      ]
+     },
+     "execution_count": 39,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rng"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "id": "bc2fb547",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:13.439114Z",
+     "iopub.status.busy": "2024-05-07T11:00:13.438319Z",
+     "iopub.status.idle": "2024-05-07T11:00:13.445014Z",
+     "shell.execute_reply": "2024-05-07T11:00:13.444149Z"
+    },
+    "papermill": {
+     "duration": 0.046083,
+     "end_time": "2024-05-07T11:00:13.446900",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:13.400817",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([ 1., -2.,  3., -4.])"
+      ]
+     },
+     "execution_count": 40,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "matrix[0] # matrix is like our 2dim array"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2e7c70f4",
+   "metadata": {
+    "papermill": {
+     "duration": 0.03664,
+     "end_time": "2024-05-07T11:00:13.519751",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:13.483111",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "### Random Number"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 41,
+   "id": "025f4299",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:13.595321Z",
+     "iopub.status.busy": "2024-05-07T11:00:13.594464Z",
+     "iopub.status.idle": "2024-05-07T11:00:13.603513Z",
+     "shell.execute_reply": "2024-05-07T11:00:13.602607Z"
+    },
+    "papermill": {
+     "duration": 0.048675,
+     "end_time": "2024-05-07T11:00:13.605498",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:13.556823",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "rnadom = torch.randn(1,10) # size is passed here no range."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 42,
+   "id": "1c3bd96c",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:13.680688Z",
+     "iopub.status.busy": "2024-05-07T11:00:13.680284Z",
+     "iopub.status.idle": "2024-05-07T11:00:13.687132Z",
+     "shell.execute_reply": "2024-05-07T11:00:13.686260Z"
+    },
+    "papermill": {
+     "duration": 0.04639,
+     "end_time": "2024-05-07T11:00:13.689023",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:13.642633",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[-0.3778,  0.3260, -0.0828, -0.4149,  0.9376,  0.3123, -0.9283, -0.8570,\n",
+       "         -1.8395, -0.9814]])"
+      ]
+     },
+     "execution_count": 42,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rnadom"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 43,
+   "id": "0712a76f",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:13.766096Z",
+     "iopub.status.busy": "2024-05-07T11:00:13.765420Z",
+     "iopub.status.idle": "2024-05-07T11:00:13.769938Z",
+     "shell.execute_reply": "2024-05-07T11:00:13.769044Z"
+    },
+    "papermill": {
+     "duration": 0.044859,
+     "end_time": "2024-05-07T11:00:13.771861",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:13.727002",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "random = torch.randint(10, (2,10)) # 0-10 exc random numbers tesnor of size 2,10"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 44,
+   "id": "ebc2028c",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:13.847412Z",
+     "iopub.status.busy": "2024-05-07T11:00:13.847047Z",
+     "iopub.status.idle": "2024-05-07T11:00:13.853584Z",
+     "shell.execute_reply": "2024-05-07T11:00:13.852725Z"
+    },
+    "papermill": {
+     "duration": 0.046647,
+     "end_time": "2024-05-07T11:00:13.855550",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:13.808903",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[4, 1, 0, 4, 7, 4, 5, 8, 3, 3],\n",
+       "        [1, 5, 8, 0, 3, 5, 5, 6, 8, 5]])"
+      ]
+     },
+     "execution_count": 44,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "random"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 45,
+   "id": "5c8ebcd0",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:13.933118Z",
+     "iopub.status.busy": "2024-05-07T11:00:13.932245Z",
+     "iopub.status.idle": "2024-05-07T11:00:13.937410Z",
+     "shell.execute_reply": "2024-05-07T11:00:13.936399Z"
+    },
+    "papermill": {
+     "duration": 0.046041,
+     "end_time": "2024-05-07T11:00:13.939380",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:13.893339",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "div = torch.div(torch.FloatTensor([1,2,3,4]),2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 46,
+   "id": "3e39bfeb",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:14.016137Z",
+     "iopub.status.busy": "2024-05-07T11:00:14.015502Z",
+     "iopub.status.idle": "2024-05-07T11:00:14.022251Z",
+     "shell.execute_reply": "2024-05-07T11:00:14.021349Z"
+    },
+    "papermill": {
+     "duration": 0.047456,
+     "end_time": "2024-05-07T11:00:14.024280",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:13.976824",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([0.5000, 1.0000, 1.5000, 2.0000])"
+      ]
+     },
+     "execution_count": 46,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "div"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 47,
+   "id": "90fc61e9",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:14.103388Z",
+     "iopub.status.busy": "2024-05-07T11:00:14.102432Z",
+     "iopub.status.idle": "2024-05-07T11:00:14.108469Z",
+     "shell.execute_reply": "2024-05-07T11:00:14.107635Z"
+    },
+    "papermill": {
+     "duration": 0.047652,
+     "end_time": "2024-05-07T11:00:14.110425",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:14.062773",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "torch.Size([4])"
+      ]
+     },
+     "execution_count": 47,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "div.size()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 48,
+   "id": "62bd9ae2",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:14.188009Z",
+     "iopub.status.busy": "2024-05-07T11:00:14.187617Z",
+     "iopub.status.idle": "2024-05-07T11:00:14.193084Z",
+     "shell.execute_reply": "2024-05-07T11:00:14.192351Z"
+    },
+    "papermill": {
+     "duration": 0.046885,
+     "end_time": "2024-05-07T11:00:14.195063",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:14.148178",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "identity_matrix = torch.eye(2,2)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "id": "3d7a951b",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:14.272829Z",
+     "iopub.status.busy": "2024-05-07T11:00:14.271928Z",
+     "iopub.status.idle": "2024-05-07T11:00:14.279178Z",
+     "shell.execute_reply": "2024-05-07T11:00:14.278275Z"
+    },
+    "papermill": {
+     "duration": 0.048388,
+     "end_time": "2024-05-07T11:00:14.281064",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:14.232676",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[1., 0.],\n",
+       "        [0., 1.]])"
+      ]
+     },
+     "execution_count": 49,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "identity_matrix"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 50,
+   "id": "ac46cb7d",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:14.363952Z",
+     "iopub.status.busy": "2024-05-07T11:00:14.363218Z",
+     "iopub.status.idle": "2024-05-07T11:00:14.368088Z",
+     "shell.execute_reply": "2024-05-07T11:00:14.367125Z"
+    },
+    "papermill": {
+     "duration": 0.048291,
+     "end_time": "2024-05-07T11:00:14.370053",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:14.321762",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "rnd = torch.randn(10,10)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4cd5c792",
+   "metadata": {
+    "papermill": {
+     "duration": 0.03845,
+     "end_time": "2024-05-07T11:00:14.447465",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:14.409015",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "### Maths and operations"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 51,
+   "id": "1306b8d9",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:14.526634Z",
+     "iopub.status.busy": "2024-05-07T11:00:14.525961Z",
+     "iopub.status.idle": "2024-05-07T11:00:14.530455Z",
+     "shell.execute_reply": "2024-05-07T11:00:14.529573Z"
+    },
+    "papermill": {
+     "duration": 0.046802,
+     "end_time": "2024-05-07T11:00:14.532382",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:14.485580",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "rnd = rnd.abs()*10"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 52,
+   "id": "3da43a47",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:14.612223Z",
+     "iopub.status.busy": "2024-05-07T11:00:14.611511Z",
+     "iopub.status.idle": "2024-05-07T11:00:14.618374Z",
+     "shell.execute_reply": "2024-05-07T11:00:14.617463Z"
+    },
+    "papermill": {
+     "duration": 0.049073,
+     "end_time": "2024-05-07T11:00:14.620395",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:14.571322",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor(30.8315)"
+      ]
+     },
+     "execution_count": 52,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rnd.max()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 53,
+   "id": "801dc588",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:14.698761Z",
+     "iopub.status.busy": "2024-05-07T11:00:14.698064Z",
+     "iopub.status.idle": "2024-05-07T11:00:14.707073Z",
+     "shell.execute_reply": "2024-05-07T11:00:14.706220Z"
+    },
+    "papermill": {
+     "duration": 0.050563,
+     "end_time": "2024-05-07T11:00:14.709329",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:14.658766",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor(0.2398)"
+      ]
+     },
+     "execution_count": 53,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rnd.amin() # min and "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 54,
+   "id": "c5aea47d",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:14.808830Z",
+     "iopub.status.busy": "2024-05-07T11:00:14.808454Z",
+     "iopub.status.idle": "2024-05-07T11:00:14.816201Z",
+     "shell.execute_reply": "2024-05-07T11:00:14.815173Z"
+    },
+    "papermill": {
+     "duration": 0.060498,
+     "end_time": "2024-05-07T11:00:14.818327",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:14.757829",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[ 1., -2.,  3., -4.],\n",
+       "        [ 5.,  6., -7.,  8.]])"
+      ]
+     },
+     "execution_count": 54,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "matrix"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 55,
+   "id": "7f777e4e",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:14.902818Z",
+     "iopub.status.busy": "2024-05-07T11:00:14.901948Z",
+     "iopub.status.idle": "2024-05-07T11:00:14.913523Z",
+     "shell.execute_reply": "2024-05-07T11:00:14.912576Z"
+    },
+    "papermill": {
+     "duration": 0.058604,
+     "end_time": "2024-05-07T11:00:14.915501",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:14.856897",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "torch.return_types.max(\n",
+       "values=tensor([5., 6., 3., 8.]),\n",
+       "indices=tensor([1, 1, 0, 1]))"
+      ]
+     },
+     "execution_count": 55,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "torch.max(matrix, dim=0\n",
+    "         \n",
+    "         )"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 56,
+   "id": "20a5ea01",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:14.996706Z",
+     "iopub.status.busy": "2024-05-07T11:00:14.995857Z",
+     "iopub.status.idle": "2024-05-07T11:00:15.003574Z",
+     "shell.execute_reply": "2024-05-07T11:00:15.002717Z"
+    },
+    "papermill": {
+     "duration": 0.050722,
+     "end_time": "2024-05-07T11:00:15.006051",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:14.955329",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([3., 8.])"
+      ]
+     },
+     "execution_count": 56,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "torch.amax(matrix, dim=1) # it doesnt return indices. "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d21bc39f",
+   "metadata": {
+    "papermill": {
+     "duration": 0.039477,
+     "end_time": "2024-05-07T11:00:15.089381",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:15.049904",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "rnd.ceil() and floor we can do this. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 57,
+   "id": "b651a380",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:15.176282Z",
+     "iopub.status.busy": "2024-05-07T11:00:15.175430Z",
+     "iopub.status.idle": "2024-05-07T11:00:15.185328Z",
+     "shell.execute_reply": "2024-05-07T11:00:15.184430Z"
+    },
+    "papermill": {
+     "duration": 0.05684,
+     "end_time": "2024-05-07T11:00:15.187538",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:15.130698",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[ 0., 13.,  6., 14.,  8., 21.,  4., 22.,  4.,  9.],\n",
+       "        [ 8., 19.,  2.,  6., 15., 15., 24.,  1.,  6.,  6.],\n",
+       "        [ 4.,  6.,  7., 14., 14.,  1.,  6.,  7., 11.,  2.],\n",
+       "        [ 3.,  8.,  8., 13.,  7.,  0., 17., 24., 17., 11.],\n",
+       "        [12.,  5.,  1.,  2.,  8.,  6.,  4.,  5.,  6.,  3.],\n",
+       "        [17., 12.,  4.,  6.,  9.,  1., 11.,  3.,  8., 11.],\n",
+       "        [ 3.,  9.,  8., 15.,  3., 24.,  9., 13.,  7., 18.],\n",
+       "        [ 1., 12., 31., 12., 13.,  8.,  4.,  1., 11., 15.],\n",
+       "        [ 1.,  3.,  7.,  3.,  1., 11., 13., 14.,  1.,  5.],\n",
+       "        [12., 25., 16., 10.,  5.,  1.,  6.,  3.,  8., 12.]])"
+      ]
+     },
+     "execution_count": 57,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rnd.round()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 58,
+   "id": "5a87ebfc",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:15.267883Z",
+     "iopub.status.busy": "2024-05-07T11:00:15.266904Z",
+     "iopub.status.idle": "2024-05-07T11:00:15.278044Z",
+     "shell.execute_reply": "2024-05-07T11:00:15.276992Z"
+    },
+    "papermill": {
+     "duration": 0.053608,
+     "end_time": "2024-05-07T11:00:15.280063",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:15.226455",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[ 0., 13.,  6., 14.,  8., 21.,  4., 22.,  4.,  9.],\n",
+       "        [ 8., 19.,  2.,  6., 15., 15., 24.,  1.,  6.,  6.],\n",
+       "        [ 4.,  6.,  7., 14., 14.,  1.,  6.,  7., 11.,  2.],\n",
+       "        [ 3.,  8.,  8., 13.,  7.,  0., 17., 24., 17., 11.],\n",
+       "        [12.,  5.,  1.,  2.,  8.,  6.,  4.,  5.,  6.,  3.],\n",
+       "        [17., 12.,  4.,  6.,  9.,  1., 11.,  3.,  8., 11.],\n",
+       "        [ 3.,  9.,  8., 15.,  3., 24.,  9., 13.,  7., 18.],\n",
+       "        [ 1., 12., 31., 12., 13.,  8.,  4.,  1., 11., 15.],\n",
+       "        [ 1.,  3.,  7.,  3.,  1., 11., 13., 14.,  1.,  5.],\n",
+       "        [12., 25., 16., 10.,  5.,  1.,  6.,  3.,  8., 12.]])"
+      ]
+     },
+     "execution_count": 58,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "torch.round_(rnd)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 59,
+   "id": "0a31a06d",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:15.363439Z",
+     "iopub.status.busy": "2024-05-07T11:00:15.362517Z",
+     "iopub.status.idle": "2024-05-07T11:00:15.367602Z",
+     "shell.execute_reply": "2024-05-07T11:00:15.366708Z"
+    },
+    "papermill": {
+     "duration": 0.049419,
+     "end_time": "2024-05-07T11:00:15.369451",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:15.320032",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "nmaty = torch.randn(size=(3,4,4))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 60,
+   "id": "276f11f8",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:15.451389Z",
+     "iopub.status.busy": "2024-05-07T11:00:15.450473Z",
+     "iopub.status.idle": "2024-05-07T11:00:15.457435Z",
+     "shell.execute_reply": "2024-05-07T11:00:15.456434Z"
+    },
+    "papermill": {
+     "duration": 0.050357,
+     "end_time": "2024-05-07T11:00:15.459446",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:15.409089",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(torch.Size([3, 4, 4]), 3)"
+      ]
+     },
+     "execution_count": 60,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "nmaty.shape, nmaty.ndim"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b20decd3",
+   "metadata": {
+    "papermill": {
+     "duration": 0.039,
+     "end_time": "2024-05-07T11:00:15.537818",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:15.498818",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "### TORCH zeroes and ones matrix"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 61,
+   "id": "79668955",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:15.619786Z",
+     "iopub.status.busy": "2024-05-07T11:00:15.618785Z",
+     "iopub.status.idle": "2024-05-07T11:00:15.623920Z",
+     "shell.execute_reply": "2024-05-07T11:00:15.623011Z"
+    },
+    "papermill": {
+     "duration": 0.04877,
+     "end_time": "2024-05-07T11:00:15.625925",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:15.577155",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "zeroes = torch.zeros(size=(3,3))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 62,
+   "id": "dea2fb6b",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:15.707500Z",
+     "iopub.status.busy": "2024-05-07T11:00:15.706702Z",
+     "iopub.status.idle": "2024-05-07T11:00:15.713872Z",
+     "shell.execute_reply": "2024-05-07T11:00:15.712965Z"
+    },
+    "papermill": {
+     "duration": 0.050661,
+     "end_time": "2024-05-07T11:00:15.716007",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:15.665346",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[0., 0., 0.],\n",
+       "        [0., 0., 0.],\n",
+       "        [0., 0., 0.]])"
+      ]
+     },
+     "execution_count": 62,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "zeroes"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 63,
+   "id": "9272f555",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:15.799496Z",
+     "iopub.status.busy": "2024-05-07T11:00:15.799139Z",
+     "iopub.status.idle": "2024-05-07T11:00:15.803956Z",
+     "shell.execute_reply": "2024-05-07T11:00:15.803027Z"
+    },
+    "papermill": {
+     "duration": 0.047546,
+     "end_time": "2024-05-07T11:00:15.806004",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:15.758458",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "ones = torch.ones(size=(4,4),dtype=(torch.int32))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 64,
+   "id": "7f38a107",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:15.886479Z",
+     "iopub.status.busy": "2024-05-07T11:00:15.885519Z",
+     "iopub.status.idle": "2024-05-07T11:00:15.892227Z",
+     "shell.execute_reply": "2024-05-07T11:00:15.891372Z"
+    },
+    "papermill": {
+     "duration": 0.049332,
+     "end_time": "2024-05-07T11:00:15.894262",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:15.844930",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[1, 1, 1, 1],\n",
+       "        [1, 1, 1, 1],\n",
+       "        [1, 1, 1, 1],\n",
+       "        [1, 1, 1, 1]], dtype=torch.int32)"
+      ]
+     },
+     "execution_count": 64,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "ones"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 65,
+   "id": "008d9127",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:15.974265Z",
+     "iopub.status.busy": "2024-05-07T11:00:15.973422Z",
+     "iopub.status.idle": "2024-05-07T11:00:15.979396Z",
+     "shell.execute_reply": "2024-05-07T11:00:15.978519Z"
+    },
+    "papermill": {
+     "duration": 0.048171,
+     "end_time": "2024-05-07T11:00:15.981333",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:15.933162",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "torch.Size([4, 4])"
+      ]
+     },
+     "execution_count": 65,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "ones.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 66,
+   "id": "e55ff841",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:16.061368Z",
+     "iopub.status.busy": "2024-05-07T11:00:16.060721Z",
+     "iopub.status.idle": "2024-05-07T11:00:16.066468Z",
+     "shell.execute_reply": "2024-05-07T11:00:16.065601Z"
+    },
+    "papermill": {
+     "duration": 0.047918,
+     "end_time": "2024-05-07T11:00:16.068364",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:16.020446",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "torch.int32"
+      ]
+     },
+     "execution_count": 66,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "ones.dtype"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 67,
+   "id": "b92ee797",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:16.147467Z",
+     "iopub.status.busy": "2024-05-07T11:00:16.147097Z",
+     "iopub.status.idle": "2024-05-07T11:00:16.151597Z",
+     "shell.execute_reply": "2024-05-07T11:00:16.150725Z"
+    },
+    "papermill": {
+     "duration": 0.046228,
+     "end_time": "2024-05-07T11:00:16.153491",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:16.107263",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "ones_new = ones.type(torch.int16)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 68,
+   "id": "c534d164",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:16.235550Z",
+     "iopub.status.busy": "2024-05-07T11:00:16.234872Z",
+     "iopub.status.idle": "2024-05-07T11:00:16.241658Z",
+     "shell.execute_reply": "2024-05-07T11:00:16.240763Z"
+    },
+    "papermill": {
+     "duration": 0.050428,
+     "end_time": "2024-05-07T11:00:16.243638",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:16.193210",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[1, 1, 1, 1],\n",
+       "        [1, 1, 1, 1],\n",
+       "        [1, 1, 1, 1],\n",
+       "        [1, 1, 1, 1]], dtype=torch.int16)"
+      ]
+     },
+     "execution_count": 68,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "ones_new"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 69,
+   "id": "5bf56be7",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:16.325640Z",
+     "iopub.status.busy": "2024-05-07T11:00:16.325294Z",
+     "iopub.status.idle": "2024-05-07T11:00:16.330910Z",
+     "shell.execute_reply": "2024-05-07T11:00:16.330058Z"
+    },
+    "papermill": {
+     "duration": 0.048706,
+     "end_time": "2024-05-07T11:00:16.332775",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:16.284069",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "device(type='cpu')"
+      ]
+     },
+     "execution_count": 69,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "ones.device"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 70,
+   "id": "e5c0f2a8",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:16.416006Z",
+     "iopub.status.busy": "2024-05-07T11:00:16.415350Z",
+     "iopub.status.idle": "2024-05-07T11:00:16.421894Z",
+     "shell.execute_reply": "2024-05-07T11:00:16.420960Z"
+    },
+    "papermill": {
+     "duration": 0.050005,
+     "end_time": "2024-05-07T11:00:16.423873",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:16.373868",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor(31.)"
+      ]
+     },
+     "execution_count": 70,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rnd.max()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 71,
+   "id": "e34a6dbc",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:16.504787Z",
+     "iopub.status.busy": "2024-05-07T11:00:16.504414Z",
+     "iopub.status.idle": "2024-05-07T11:00:16.514086Z",
+     "shell.execute_reply": "2024-05-07T11:00:16.513216Z"
+    },
+    "papermill": {
+     "duration": 0.052471,
+     "end_time": "2024-05-07T11:00:16.515976",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:16.463505",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor(8.9100)"
+      ]
+     },
+     "execution_count": 71,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rnd.mean()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 72,
+   "id": "66514f5e",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:16.597626Z",
+     "iopub.status.busy": "2024-05-07T11:00:16.596776Z",
+     "iopub.status.idle": "2024-05-07T11:00:16.603477Z",
+     "shell.execute_reply": "2024-05-07T11:00:16.602646Z"
+    },
+    "papermill": {
+     "duration": 0.049437,
+     "end_time": "2024-05-07T11:00:16.605432",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:16.555995",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor(0.)"
+      ]
+     },
+     "execution_count": 72,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rnd.min()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 73,
+   "id": "72fd4912",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:16.687057Z",
+     "iopub.status.busy": "2024-05-07T11:00:16.686411Z",
+     "iopub.status.idle": "2024-05-07T11:00:16.693667Z",
+     "shell.execute_reply": "2024-05-07T11:00:16.692799Z"
+    },
+    "papermill": {
+     "duration": 0.049834,
+     "end_time": "2024-05-07T11:00:16.695647",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:16.645813",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "torch.return_types.mode(\n",
+       "values=tensor([ 4.,  6.,  6.,  8.,  5., 11.,  3.,  1.,  1., 12.]),\n",
+       "indices=tensor([8, 9, 6, 2, 7, 9, 4, 7, 8, 9]))"
+      ]
+     },
+     "execution_count": 73,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rnd.mode()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 74,
+   "id": "d02dfffd",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:16.779966Z",
+     "iopub.status.busy": "2024-05-07T11:00:16.779151Z",
+     "iopub.status.idle": "2024-05-07T11:00:16.788248Z",
+     "shell.execute_reply": "2024-05-07T11:00:16.787391Z"
+    },
+    "papermill": {
+     "duration": 0.053746,
+     "end_time": "2024-05-07T11:00:16.790255",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:16.736509",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor(8.)"
+      ]
+     },
+     "execution_count": 74,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rnd.median()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "392ae789",
+   "metadata": {
+    "papermill": {
+     "duration": 0.040167,
+     "end_time": "2024-05-07T11:00:16.870330",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:16.830163",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "#### argmax is for position of max "
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2bb607b7",
+   "metadata": {
+    "papermill": {
+     "duration": 0.040355,
+     "end_time": "2024-05-07T11:00:16.950399",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:16.910044",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "##  Reshaping, Squeezing : remove 1 dims and unsqueeze : add 1 dim at given position"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 75,
+   "id": "fdc3fa41",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:17.033423Z",
+     "iopub.status.busy": "2024-05-07T11:00:17.033069Z",
+     "iopub.status.idle": "2024-05-07T11:00:17.037846Z",
+     "shell.execute_reply": "2024-05-07T11:00:17.036952Z"
+    },
+    "papermill": {
+     "duration": 0.048709,
+     "end_time": "2024-05-07T11:00:17.039746",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:16.991037",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "rnd = torch.randn(size=(1,100))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 76,
+   "id": "20893460",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:17.122078Z",
+     "iopub.status.busy": "2024-05-07T11:00:17.121725Z",
+     "iopub.status.idle": "2024-05-07T11:00:17.127553Z",
+     "shell.execute_reply": "2024-05-07T11:00:17.126692Z"
+    },
+    "papermill": {
+     "duration": 0.049226,
+     "end_time": "2024-05-07T11:00:17.129618",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:17.080392",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "2"
+      ]
+     },
+     "execution_count": 76,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rnd.dim()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 77,
+   "id": "70fb85d0",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:17.212292Z",
+     "iopub.status.busy": "2024-05-07T11:00:17.211626Z",
+     "iopub.status.idle": "2024-05-07T11:00:17.217524Z",
+     "shell.execute_reply": "2024-05-07T11:00:17.216641Z"
+    },
+    "papermill": {
+     "duration": 0.049511,
+     "end_time": "2024-05-07T11:00:17.219534",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:17.170023",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "2"
+      ]
+     },
+     "execution_count": 77,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rnd.ndim"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 78,
+   "id": "d2202e6b",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:17.302531Z",
+     "iopub.status.busy": "2024-05-07T11:00:17.301719Z",
+     "iopub.status.idle": "2024-05-07T11:00:17.307564Z",
+     "shell.execute_reply": "2024-05-07T11:00:17.306701Z"
+    },
+    "papermill": {
+     "duration": 0.049744,
+     "end_time": "2024-05-07T11:00:17.309603",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:17.259859",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "torch.Size([1, 100])"
+      ]
+     },
+     "execution_count": 78,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rnd.size()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 79,
+   "id": "00ca72e0",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:17.395155Z",
+     "iopub.status.busy": "2024-05-07T11:00:17.394773Z",
+     "iopub.status.idle": "2024-05-07T11:00:17.403310Z",
+     "shell.execute_reply": "2024-05-07T11:00:17.402369Z"
+    },
+    "papermill": {
+     "duration": 0.05426,
+     "end_time": "2024-05-07T11:00:17.405283",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:17.351023",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[-0.6231, -1.3922, -0.5527,  1.0409, -0.3456,  1.2323,  0.8081, -0.7169,\n",
+       "         -0.3025, -0.2962,  0.4421, -0.5923, -0.3517,  0.5955, -0.7117,  0.1097,\n",
+       "          0.8607,  2.0118, -0.1375,  0.0538,  0.6229,  1.5340,  0.8899,  0.3719,\n",
+       "         -0.2428,  0.7671, -0.3698, -2.2355,  1.3208, -0.3153, -0.3917,  1.2868,\n",
+       "          0.4792,  1.4326, -0.0501,  1.1312,  0.3398, -0.2345,  0.4092, -0.5228,\n",
+       "         -1.9408,  0.9110,  0.4582, -0.5884, -1.4482, -0.1058,  0.2090, -0.5316,\n",
+       "          0.9323,  0.2241],\n",
+       "        [ 0.8164, -0.3358,  1.0392, -0.0069,  0.6892, -0.9968, -0.8352, -0.7495,\n",
+       "          0.8799, -1.1995, -0.3003, -1.0547,  0.7043,  1.5282, -2.0149,  0.8160,\n",
+       "         -0.6844,  0.7580,  0.3376,  0.8923,  1.4060,  0.6315,  0.4256, -0.1646,\n",
+       "          0.2026, -0.9713, -0.8977, -0.2165, -0.1390, -0.3711,  0.3134,  0.6349,\n",
+       "         -0.3129, -0.5790,  0.5309, -0.3024,  0.3733,  0.6949, -1.4208,  0.8281,\n",
+       "         -0.6514, -2.0006,  0.9300,  0.3332,  0.0506,  0.8413, -0.1213,  1.6145,\n",
+       "          0.8097,  0.9869]])"
+      ]
+     },
+     "execution_count": 79,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rnd.reshape([2,50])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 80,
+   "id": "d7cafb85",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:17.488140Z",
+     "iopub.status.busy": "2024-05-07T11:00:17.487523Z",
+     "iopub.status.idle": "2024-05-07T11:00:17.496647Z",
+     "shell.execute_reply": "2024-05-07T11:00:17.495694Z"
+    },
+    "papermill": {
+     "duration": 0.053139,
+     "end_time": "2024-05-07T11:00:17.498731",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:17.445592",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([-0.6231, -1.3922, -0.5527,  1.0409, -0.3456,  1.2323,  0.8081, -0.7169,\n",
+       "        -0.3025, -0.2962,  0.4421, -0.5923, -0.3517,  0.5955, -0.7117,  0.1097,\n",
+       "         0.8607,  2.0118, -0.1375,  0.0538,  0.6229,  1.5340,  0.8899,  0.3719,\n",
+       "        -0.2428,  0.7671, -0.3698, -2.2355,  1.3208, -0.3153, -0.3917,  1.2868,\n",
+       "         0.4792,  1.4326, -0.0501,  1.1312,  0.3398, -0.2345,  0.4092, -0.5228,\n",
+       "        -1.9408,  0.9110,  0.4582, -0.5884, -1.4482, -0.1058,  0.2090, -0.5316,\n",
+       "         0.9323,  0.2241,  0.8164, -0.3358,  1.0392, -0.0069,  0.6892, -0.9968,\n",
+       "        -0.8352, -0.7495,  0.8799, -1.1995, -0.3003, -1.0547,  0.7043,  1.5282,\n",
+       "        -2.0149,  0.8160, -0.6844,  0.7580,  0.3376,  0.8923,  1.4060,  0.6315,\n",
+       "         0.4256, -0.1646,  0.2026, -0.9713, -0.8977, -0.2165, -0.1390, -0.3711,\n",
+       "         0.3134,  0.6349, -0.3129, -0.5790,  0.5309, -0.3024,  0.3733,  0.6949,\n",
+       "        -1.4208,  0.8281, -0.6514, -2.0006,  0.9300,  0.3332,  0.0506,  0.8413,\n",
+       "        -0.1213,  1.6145,  0.8097,  0.9869])"
+      ]
+     },
+     "execution_count": 80,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "rnd.flatten()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 81,
+   "id": "90058ccf",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:17.583989Z",
+     "iopub.status.busy": "2024-05-07T11:00:17.583181Z",
+     "iopub.status.idle": "2024-05-07T11:00:17.587651Z",
+     "shell.execute_reply": "2024-05-07T11:00:17.586724Z"
+    },
+    "papermill": {
+     "duration": 0.050005,
+     "end_time": "2024-05-07T11:00:17.589610",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:17.539605",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "a = torch.Tensor()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 82,
+   "id": "33073b80",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:17.675828Z",
+     "iopub.status.busy": "2024-05-07T11:00:17.675197Z",
+     "iopub.status.idle": "2024-05-07T11:00:17.682797Z",
+     "shell.execute_reply": "2024-05-07T11:00:17.681878Z"
+    },
+    "papermill": {
+     "duration": 0.051569,
+     "end_time": "2024-05-07T11:00:17.684718",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:17.633149",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[[0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [5.5617e+22, 4.4117e-41, 5.5617e+22, 4.4117e-41, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00]],\n",
+       "\n",
+       "        [[0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00]],\n",
+       "\n",
+       "        [[0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00]],\n",
+       "\n",
+       "        [[0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00],\n",
+       "         [0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00, 0.0000e+00,\n",
+       "          0.0000e+00]]])"
+      ]
+     },
+     "execution_count": 82,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "a.resize_(4,6,6)  # 4 tensors of 6x6"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 83,
+   "id": "184cc30f",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:17.769182Z",
+     "iopub.status.busy": "2024-05-07T11:00:17.768493Z",
+     "iopub.status.idle": "2024-05-07T11:00:17.772986Z",
+     "shell.execute_reply": "2024-05-07T11:00:17.772118Z"
+    },
+    "papermill": {
+     "duration": 0.049136,
+     "end_time": "2024-05-07T11:00:17.774894",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:17.725758",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "a = torch.Tensor([[1,2],[3,4]])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 84,
+   "id": "68171644",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:17.860974Z",
+     "iopub.status.busy": "2024-05-07T11:00:17.860257Z",
+     "iopub.status.idle": "2024-05-07T11:00:17.866219Z",
+     "shell.execute_reply": "2024-05-07T11:00:17.865374Z"
+    },
+    "papermill": {
+     "duration": 0.051257,
+     "end_time": "2024-05-07T11:00:17.868245",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:17.816988",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "torch.Size([2, 2])"
+      ]
+     },
+     "execution_count": 84,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "a.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 85,
+   "id": "e8958f9c",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:17.952069Z",
+     "iopub.status.busy": "2024-05-07T11:00:17.951429Z",
+     "iopub.status.idle": "2024-05-07T11:00:17.956762Z",
+     "shell.execute_reply": "2024-05-07T11:00:17.955866Z"
+    },
+    "papermill": {
+     "duration": 0.049542,
+     "end_time": "2024-05-07T11:00:17.958943",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:17.909401",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "a = a.unsqueeze(1) # add dimension at position"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 86,
+   "id": "09d9b262",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:18.042905Z",
+     "iopub.status.busy": "2024-05-07T11:00:18.042521Z",
+     "iopub.status.idle": "2024-05-07T11:00:18.049270Z",
+     "shell.execute_reply": "2024-05-07T11:00:18.048399Z"
+    },
+    "papermill": {
+     "duration": 0.051108,
+     "end_time": "2024-05-07T11:00:18.051146",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:18.000038",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[[1., 2.]],\n",
+       "\n",
+       "        [[3., 4.]]])"
+      ]
+     },
+     "execution_count": 86,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "a"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 87,
+   "id": "9719cd4e",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:18.134940Z",
+     "iopub.status.busy": "2024-05-07T11:00:18.134579Z",
+     "iopub.status.idle": "2024-05-07T11:00:18.140226Z",
+     "shell.execute_reply": "2024-05-07T11:00:18.139367Z"
+    },
+    "papermill": {
+     "duration": 0.04986,
+     "end_time": "2024-05-07T11:00:18.142244",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:18.092384",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "torch.Size([2, 1, 2])"
+      ]
+     },
+     "execution_count": 87,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "a.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 88,
+   "id": "3888c232",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:18.226466Z",
+     "iopub.status.busy": "2024-05-07T11:00:18.226122Z",
+     "iopub.status.idle": "2024-05-07T11:00:18.230515Z",
+     "shell.execute_reply": "2024-05-07T11:00:18.229635Z"
+    },
+    "papermill": {
+     "duration": 0.048959,
+     "end_time": "2024-05-07T11:00:18.232505",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:18.183546",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "a =a.squeeze()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 89,
+   "id": "4328474c",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:18.318499Z",
+     "iopub.status.busy": "2024-05-07T11:00:18.317582Z",
+     "iopub.status.idle": "2024-05-07T11:00:18.324360Z",
+     "shell.execute_reply": "2024-05-07T11:00:18.323437Z"
+    },
+    "papermill": {
+     "duration": 0.05202,
+     "end_time": "2024-05-07T11:00:18.326401",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:18.274381",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[1., 2.],\n",
+       "        [3., 4.]])"
+      ]
+     },
+     "execution_count": 89,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "a"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "cfcccb69",
+   "metadata": {
+    "papermill": {
+     "duration": 0.041284,
+     "end_time": "2024-05-07T11:00:18.412461",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:18.371177",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "#### MERGE Tensors using stack"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 90,
+   "id": "68d3753c",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:18.497781Z",
+     "iopub.status.busy": "2024-05-07T11:00:18.497448Z",
+     "iopub.status.idle": "2024-05-07T11:00:18.501969Z",
+     "shell.execute_reply": "2024-05-07T11:00:18.501029Z"
+    },
+    "papermill": {
+     "duration": 0.049278,
+     "end_time": "2024-05-07T11:00:18.503878",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:18.454600",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "a = torch.randn(size=(1,5))\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 91,
+   "id": "670bb893",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:18.588803Z",
+     "iopub.status.busy": "2024-05-07T11:00:18.588411Z",
+     "iopub.status.idle": "2024-05-07T11:00:18.595181Z",
+     "shell.execute_reply": "2024-05-07T11:00:18.594109Z"
+    },
+    "papermill": {
+     "duration": 0.051742,
+     "end_time": "2024-05-07T11:00:18.597237",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:18.545495",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[-1.1898, -0.1651, -0.5149,  1.3580, -0.5601]])"
+      ]
+     },
+     "execution_count": 91,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "a"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 92,
+   "id": "5dd74924",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:18.683812Z",
+     "iopub.status.busy": "2024-05-07T11:00:18.683130Z",
+     "iopub.status.idle": "2024-05-07T11:00:18.687951Z",
+     "shell.execute_reply": "2024-05-07T11:00:18.686961Z"
+    },
+    "papermill": {
+     "duration": 0.050633,
+     "end_time": "2024-05-07T11:00:18.690079",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:18.639446",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "b = torch.randn(size=(1,5))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 93,
+   "id": "8020aea0",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:18.778405Z",
+     "iopub.status.busy": "2024-05-07T11:00:18.777622Z",
+     "iopub.status.idle": "2024-05-07T11:00:18.784394Z",
+     "shell.execute_reply": "2024-05-07T11:00:18.783498Z"
+    },
+    "papermill": {
+     "duration": 0.053248,
+     "end_time": "2024-05-07T11:00:18.786320",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:18.733072",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[-0.2181, -2.3996,  0.0749,  0.7353,  1.0246]])"
+      ]
+     },
+     "execution_count": 93,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "b"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 94,
+   "id": "19f6ed34",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:18.871786Z",
+     "iopub.status.busy": "2024-05-07T11:00:18.871004Z",
+     "iopub.status.idle": "2024-05-07T11:00:18.877551Z",
+     "shell.execute_reply": "2024-05-07T11:00:18.876823Z"
+    },
+    "papermill": {
+     "duration": 0.051044,
+     "end_time": "2024-05-07T11:00:18.879381",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:18.828337",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "c = torch.stack((a,b), dim=1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 95,
+   "id": "264cbe34",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:18.964757Z",
+     "iopub.status.busy": "2024-05-07T11:00:18.964096Z",
+     "iopub.status.idle": "2024-05-07T11:00:18.970784Z",
+     "shell.execute_reply": "2024-05-07T11:00:18.969937Z"
+    },
+    "papermill": {
+     "duration": 0.050961,
+     "end_time": "2024-05-07T11:00:18.972610",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:18.921649",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[[-1.1898, -0.1651, -0.5149,  1.3580, -0.5601],\n",
+       "         [-0.2181, -2.3996,  0.0749,  0.7353,  1.0246]]])"
+      ]
+     },
+     "execution_count": 95,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "c"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 96,
+   "id": "4653f6db",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:19.058507Z",
+     "iopub.status.busy": "2024-05-07T11:00:19.057678Z",
+     "iopub.status.idle": "2024-05-07T11:00:19.062184Z",
+     "shell.execute_reply": "2024-05-07T11:00:19.061308Z"
+    },
+    "papermill": {
+     "duration": 0.049397,
+     "end_time": "2024-05-07T11:00:19.064108",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:19.014711",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "c = torch.stack((a,b), dim = 0)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 97,
+   "id": "3360c129",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:19.150292Z",
+     "iopub.status.busy": "2024-05-07T11:00:19.149925Z",
+     "iopub.status.idle": "2024-05-07T11:00:19.156482Z",
+     "shell.execute_reply": "2024-05-07T11:00:19.155685Z"
+    },
+    "papermill": {
+     "duration": 0.051731,
+     "end_time": "2024-05-07T11:00:19.158332",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:19.106601",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[[-1.1898, -0.1651, -0.5149,  1.3580, -0.5601]],\n",
+       "\n",
+       "        [[-0.2181, -2.3996,  0.0749,  0.7353,  1.0246]]])"
+      ]
+     },
+     "execution_count": 97,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "c"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 98,
+   "id": "ae89a27e",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:19.244034Z",
+     "iopub.status.busy": "2024-05-07T11:00:19.243700Z",
+     "iopub.status.idle": "2024-05-07T11:00:19.248041Z",
+     "shell.execute_reply": "2024-05-07T11:00:19.247181Z"
+    },
+    "papermill": {
+     "duration": 0.049093,
+     "end_time": "2024-05-07T11:00:19.249940",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:19.200847",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "c = torch.stack((a,b))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 99,
+   "id": "bc8b968a",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:19.339968Z",
+     "iopub.status.busy": "2024-05-07T11:00:19.339171Z",
+     "iopub.status.idle": "2024-05-07T11:00:19.345660Z",
+     "shell.execute_reply": "2024-05-07T11:00:19.344779Z"
+    },
+    "papermill": {
+     "duration": 0.053347,
+     "end_time": "2024-05-07T11:00:19.347578",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:19.294231",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[[-1.1898, -0.1651, -0.5149,  1.3580, -0.5601]],\n",
+       "\n",
+       "        [[-0.2181, -2.3996,  0.0749,  0.7353,  1.0246]]])"
+      ]
+     },
+     "execution_count": 99,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "c"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 100,
+   "id": "dd383f69",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:19.437169Z",
+     "iopub.status.busy": "2024-05-07T11:00:19.436394Z",
+     "iopub.status.idle": "2024-05-07T11:00:19.441068Z",
+     "shell.execute_reply": "2024-05-07T11:00:19.440180Z"
+    },
+    "papermill": {
+     "duration": 0.050708,
+     "end_time": "2024-05-07T11:00:19.442972",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:19.392264",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "x = torch.tensor([1.,3.,6.,10.]) \n",
+    "y = torch.tensor([2.,7.,9.,13.]) "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 101,
+   "id": "ca17e574",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:19.546164Z",
+     "iopub.status.busy": "2024-05-07T11:00:19.545321Z",
+     "iopub.status.idle": "2024-05-07T11:00:19.549831Z",
+     "shell.execute_reply": "2024-05-07T11:00:19.548970Z"
+    },
+    "papermill": {
+     "duration": 0.055936,
+     "end_time": "2024-05-07T11:00:19.551706",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:19.495770",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "z = torch.stack((x,y))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 102,
+   "id": "bf4005e7",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:19.637441Z",
+     "iopub.status.busy": "2024-05-07T11:00:19.637073Z",
+     "iopub.status.idle": "2024-05-07T11:00:19.643783Z",
+     "shell.execute_reply": "2024-05-07T11:00:19.642838Z"
+    },
+    "papermill": {
+     "duration": 0.052101,
+     "end_time": "2024-05-07T11:00:19.645829",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:19.593728",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[ 1.,  3.,  6., 10.],\n",
+       "        [ 2.,  7.,  9., 13.]])"
+      ]
+     },
+     "execution_count": 102,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "z"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 103,
+   "id": "86fe82ae",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:19.732963Z",
+     "iopub.status.busy": "2024-05-07T11:00:19.732250Z",
+     "iopub.status.idle": "2024-05-07T11:00:19.736683Z",
+     "shell.execute_reply": "2024-05-07T11:00:19.735863Z"
+    },
+    "papermill": {
+     "duration": 0.050407,
+     "end_time": "2024-05-07T11:00:19.738631",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:19.688224",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "z = torch.stack((x,y), dim = 1)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 104,
+   "id": "3b00200c",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:19.825146Z",
+     "iopub.status.busy": "2024-05-07T11:00:19.824807Z",
+     "iopub.status.idle": "2024-05-07T11:00:19.831830Z",
+     "shell.execute_reply": "2024-05-07T11:00:19.830891Z"
+    },
+    "papermill": {
+     "duration": 0.052664,
+     "end_time": "2024-05-07T11:00:19.833932",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:19.781268",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[ 1.,  2.],\n",
+       "        [ 3.,  7.],\n",
+       "        [ 6.,  9.],\n",
+       "        [10., 13.]])"
+      ]
+     },
+     "execution_count": 104,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "z"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 105,
+   "id": "3918569c",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:19.921690Z",
+     "iopub.status.busy": "2024-05-07T11:00:19.920971Z",
+     "iopub.status.idle": "2024-05-07T11:00:19.927845Z",
+     "shell.execute_reply": "2024-05-07T11:00:19.926934Z"
+    },
+    "papermill": {
+     "duration": 0.052828,
+     "end_time": "2024-05-07T11:00:19.929809",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:19.876981",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([2., 7.])"
+      ]
+     },
+     "execution_count": 105,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "z[:2,1] # from 2 rows and second parameter as z[,1]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "12d032c9",
+   "metadata": {
+    "papermill": {
+     "duration": 0.042355,
+     "end_time": "2024-05-07T11:00:20.014731",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:19.972376",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "#### SEEDING"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 106,
+   "id": "540491f3",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:20.105497Z",
+     "iopub.status.busy": "2024-05-07T11:00:20.104883Z",
+     "iopub.status.idle": "2024-05-07T11:00:20.108953Z",
+     "shell.execute_reply": "2024-05-07T11:00:20.108126Z"
+    },
+    "papermill": {
+     "duration": 0.053349,
+     "end_time": "2024-05-07T11:00:20.110866",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:20.057517",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "RANDOM_SEED = 42"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 107,
+   "id": "f9a46af6",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:20.199117Z",
+     "iopub.status.busy": "2024-05-07T11:00:20.198257Z",
+     "iopub.status.idle": "2024-05-07T11:00:20.207025Z",
+     "shell.execute_reply": "2024-05-07T11:00:20.205980Z"
+    },
+    "papermill": {
+     "duration": 0.054966,
+     "end_time": "2024-05-07T11:00:20.208948",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:20.153982",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<torch._C.Generator at 0x7afc14ef7190>"
+      ]
+     },
+     "execution_count": 107,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "torch.manual_seed(RANDOM_SEED)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 108,
+   "id": "d1d4cf82",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:20.296974Z",
+     "iopub.status.busy": "2024-05-07T11:00:20.296581Z",
+     "iopub.status.idle": "2024-05-07T11:00:20.301315Z",
+     "shell.execute_reply": "2024-05-07T11:00:20.300452Z"
+    },
+    "papermill": {
+     "duration": 0.051147,
+     "end_time": "2024-05-07T11:00:20.303240",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:20.252093",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "a = torch.rand((3,3))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 109,
+   "id": "2af49f01",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:20.392731Z",
+     "iopub.status.busy": "2024-05-07T11:00:20.392056Z",
+     "iopub.status.idle": "2024-05-07T11:00:20.398536Z",
+     "shell.execute_reply": "2024-05-07T11:00:20.397706Z"
+    },
+    "papermill": {
+     "duration": 0.054489,
+     "end_time": "2024-05-07T11:00:20.400366",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:20.345877",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[0.8823, 0.9150, 0.3829],\n",
+       "        [0.9593, 0.3904, 0.6009],\n",
+       "        [0.2566, 0.7936, 0.9408]])"
+      ]
+     },
+     "execution_count": 109,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "a"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 110,
+   "id": "8bca72bc",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:20.487155Z",
+     "iopub.status.busy": "2024-05-07T11:00:20.486695Z",
+     "iopub.status.idle": "2024-05-07T11:00:20.493548Z",
+     "shell.execute_reply": "2024-05-07T11:00:20.492694Z"
+    },
+    "papermill": {
+     "duration": 0.052628,
+     "end_time": "2024-05-07T11:00:20.495426",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:20.442798",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "<torch._C.Generator at 0x7afc14ef7190>"
+      ]
+     },
+     "execution_count": 110,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "torch.manual_seed(RANDOM_SEED)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 111,
+   "id": "789a56e6",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:20.585022Z",
+     "iopub.status.busy": "2024-05-07T11:00:20.584179Z",
+     "iopub.status.idle": "2024-05-07T11:00:20.588850Z",
+     "shell.execute_reply": "2024-05-07T11:00:20.587919Z"
+    },
+    "papermill": {
+     "duration": 0.051215,
+     "end_time": "2024-05-07T11:00:20.590822",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:20.539607",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "b = torch.rand((3,3))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 112,
+   "id": "5f4d7276",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:20.679471Z",
+     "iopub.status.busy": "2024-05-07T11:00:20.678613Z",
+     "iopub.status.idle": "2024-05-07T11:00:20.685436Z",
+     "shell.execute_reply": "2024-05-07T11:00:20.684576Z"
+    },
+    "papermill": {
+     "duration": 0.052877,
+     "end_time": "2024-05-07T11:00:20.687443",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:20.634566",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[0.8823, 0.9150, 0.3829],\n",
+       "        [0.9593, 0.3904, 0.6009],\n",
+       "        [0.2566, 0.7936, 0.9408]])"
+      ]
+     },
+     "execution_count": 112,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "b"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 113,
+   "id": "9fc403bd",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:20.776830Z",
+     "iopub.status.busy": "2024-05-07T11:00:20.776449Z",
+     "iopub.status.idle": "2024-05-07T11:00:20.782873Z",
+     "shell.execute_reply": "2024-05-07T11:00:20.781991Z"
+    },
+    "papermill": {
+     "duration": 0.05363,
+     "end_time": "2024-05-07T11:00:20.784780",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:20.731150",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([[True, True, True],\n",
+       "        [True, True, True],\n",
+       "        [True, True, True]])"
+      ]
+     },
+     "execution_count": 113,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "a == b"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 114,
+   "id": "ddb4ab27",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:20.873698Z",
+     "iopub.status.busy": "2024-05-07T11:00:20.873032Z",
+     "iopub.status.idle": "2024-05-07T11:00:21.860036Z",
+     "shell.execute_reply": "2024-05-07T11:00:21.858827Z"
+    },
+    "papermill": {
+     "duration": 1.034091,
+     "end_time": "2024-05-07T11:00:21.862500",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:20.828409",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Tue May  7 11:00:21 2024       \r\n",
+      "+---------------------------------------------------------------------------------------+\r\n",
+      "| NVIDIA-SMI 535.129.03             Driver Version: 535.129.03   CUDA Version: 12.2     |\r\n",
+      "|-----------------------------------------+----------------------+----------------------+\r\n",
+      "| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |\r\n",
+      "| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |\r\n",
+      "|                                         |                      |               MIG M. |\r\n",
+      "|=========================================+======================+======================|\r\n",
+      "|   0  Tesla P100-PCIE-16GB           Off | 00000000:00:04.0 Off |                    0 |\r\n",
+      "| N/A   37C    P0              27W / 250W |      0MiB / 16384MiB |      0%      Default |\r\n",
+      "|                                         |                      |                  N/A |\r\n",
+      "+-----------------------------------------+----------------------+----------------------+\r\n",
+      "                                                                                         \r\n",
+      "+---------------------------------------------------------------------------------------+\r\n",
+      "| Processes:                                                                            |\r\n",
+      "|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |\r\n",
+      "|        ID   ID                                                             Usage      |\r\n",
+      "|=======================================================================================|\r\n",
+      "|  No running processes found                                                           |\r\n",
+      "+---------------------------------------------------------------------------------------+\r\n"
+     ]
+    }
+   ],
+   "source": [
+    "!nvidia-smi"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "60a1ef18",
+   "metadata": {
+    "papermill": {
+     "duration": 0.043479,
+     "end_time": "2024-05-07T11:00:21.949695",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:21.906216",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "## Accessing GPU"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 115,
+   "id": "19ae1c5a",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:22.038260Z",
+     "iopub.status.busy": "2024-05-07T11:00:22.037869Z",
+     "iopub.status.idle": "2024-05-07T11:00:22.096485Z",
+     "shell.execute_reply": "2024-05-07T11:00:22.095547Z"
+    },
+    "papermill": {
+     "duration": 0.105438,
+     "end_time": "2024-05-07T11:00:22.098421",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:21.992983",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "True"
+      ]
+     },
+     "execution_count": 115,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "torch.cuda.is_available()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 116,
+   "id": "ae6dbaa0",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:22.187759Z",
+     "iopub.status.busy": "2024-05-07T11:00:22.187391Z",
+     "iopub.status.idle": "2024-05-07T11:00:22.191989Z",
+     "shell.execute_reply": "2024-05-07T11:00:22.191113Z"
+    },
+    "papermill": {
+     "duration": 0.050612,
+     "end_time": "2024-05-07T11:00:22.193886",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:22.143274",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "device = \"cuda\" if torch.cuda.is_available() else \"cpu\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 117,
+   "id": "e14bc01d",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:22.282793Z",
+     "iopub.status.busy": "2024-05-07T11:00:22.282405Z",
+     "iopub.status.idle": "2024-05-07T11:00:22.288291Z",
+     "shell.execute_reply": "2024-05-07T11:00:22.287400Z"
+    },
+    "papermill": {
+     "duration": 0.052665,
+     "end_time": "2024-05-07T11:00:22.290215",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:22.237550",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'cuda'"
+      ]
+     },
+     "execution_count": 117,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "device"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 118,
+   "id": "10570f9b",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:22.383144Z",
+     "iopub.status.busy": "2024-05-07T11:00:22.382449Z",
+     "iopub.status.idle": "2024-05-07T11:00:22.417995Z",
+     "shell.execute_reply": "2024-05-07T11:00:22.417017Z"
+    },
+    "papermill": {
+     "duration": 0.084673,
+     "end_time": "2024-05-07T11:00:22.420084",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:22.335411",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "0"
+      ]
+     },
+     "execution_count": 118,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "torch.cuda.current_device()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 119,
+   "id": "9ed9f8d1",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:22.509497Z",
+     "iopub.status.busy": "2024-05-07T11:00:22.508826Z",
+     "iopub.status.idle": "2024-05-07T11:00:22.514569Z",
+     "shell.execute_reply": "2024-05-07T11:00:22.513710Z"
+    },
+    "papermill": {
+     "duration": 0.05227,
+     "end_time": "2024-05-07T11:00:22.516478",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:22.464208",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "1"
+      ]
+     },
+     "execution_count": 119,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "torch.cuda.device_count()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 120,
+   "id": "f57aebe8",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:22.605768Z",
+     "iopub.status.busy": "2024-05-07T11:00:22.605387Z",
+     "iopub.status.idle": "2024-05-07T11:00:22.610181Z",
+     "shell.execute_reply": "2024-05-07T11:00:22.609239Z"
+    },
+    "papermill": {
+     "duration": 0.052013,
+     "end_time": "2024-05-07T11:00:22.612234",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:22.560221",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "cpu\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(x.device) # cureently"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 121,
+   "id": "f01872d1",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:22.702591Z",
+     "iopub.status.busy": "2024-05-07T11:00:22.701819Z",
+     "iopub.status.idle": "2024-05-07T11:00:22.825958Z",
+     "shell.execute_reply": "2024-05-07T11:00:22.824949Z"
+    },
+    "papermill": {
+     "duration": 0.171765,
+     "end_time": "2024-05-07T11:00:22.828274",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:22.656509",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "x = x.to(device)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 122,
+   "id": "574f51d4",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:22.917516Z",
+     "iopub.status.busy": "2024-05-07T11:00:22.917148Z",
+     "iopub.status.idle": "2024-05-07T11:00:23.168797Z",
+     "shell.execute_reply": "2024-05-07T11:00:23.167838Z"
+    },
+    "papermill": {
+     "duration": 0.298872,
+     "end_time": "2024-05-07T11:00:23.171096",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:22.872224",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "tensor([ 1.,  3.,  6., 10.], device='cuda:0')"
+      ]
+     },
+     "execution_count": 122,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "x"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b6db1295",
+   "metadata": {
+    "papermill": {
+     "duration": 0.043608,
+     "end_time": "2024-05-07T11:00:23.260254",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:23.216646",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "### Nmpy will not work with GPU so you need to set device again to CPU for that tensor"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "eda7f04b",
+   "metadata": {
+    "papermill": {
+     "duration": 0.043379,
+     "end_time": "2024-05-07T11:00:23.347478",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:23.304099",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "source": [
+    "# Linear Regression"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 123,
+   "id": "adf2e75a",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-07T11:00:23.440395Z",
+     "iopub.status.busy": "2024-05-07T11:00:23.439520Z",
+     "iopub.status.idle": "2024-05-07T11:00:23.444557Z",
+     "shell.execute_reply": "2024-05-07T11:00:23.443705Z"
+    },
+    "papermill": {
+     "duration": 0.05284,
+     "end_time": "2024-05-07T11:00:23.446482",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:23.393642",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "weight = 0.67\n",
+    "bias = 0.2\n",
+    "start = 0\n",
+    "end = 1\n",
+    "step = 0.02\n",
+    "\n",
+    "X = torch.arange(start,end,step)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e771e1c0",
+   "metadata": {
+    "papermill": {
+     "duration": 0.043689,
+     "end_time": "2024-05-07T11:00:23.534533",
+     "exception": false,
+     "start_time": "2024-05-07T11:00:23.490844",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kaggle": {
+   "accelerator": "gpu",
+   "dataSources": [],
+   "dockerImageVersionId": 30699,
+   "isGpuEnabled": true,
+   "isInternetEnabled": true,
+   "language": "python",
+   "sourceType": "notebook"
+  },
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.13"
+  },
+  "papermill": {
+   "default_parameters": {},
+   "duration": 22.992973,
+   "end_time": "2024-05-07T11:00:25.000771",
+   "environment_variables": {},
+   "exception": null,
+   "input_path": "__notebook__.ipynb",
+   "output_path": "__notebook__.ipynb",
+   "parameters": {},
+   "start_time": "2024-05-07T11:00:02.007798",
+   "version": "2.5.0"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
