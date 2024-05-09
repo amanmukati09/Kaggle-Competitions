@@ -1,0 +1,648 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "fa30d20b",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-09T13:58:17.347664Z",
+     "iopub.status.busy": "2024-05-09T13:58:17.347035Z",
+     "iopub.status.idle": "2024-05-09T13:58:37.331235Z",
+     "shell.execute_reply": "2024-05-09T13:58:37.329875Z"
+    },
+    "papermill": {
+     "duration": 19.995017,
+     "end_time": "2024-05-09T13:58:37.334034",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:17.339017",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "2024-05-09 13:58:24.506991: E external/local_xla/xla/stream_executor/cuda/cuda_dnn.cc:9261] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered\n",
+      "2024-05-09 13:58:24.507127: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:607] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered\n",
+      "2024-05-09 13:58:24.665285: E external/local_xla/xla/stream_executor/cuda/cuda_blas.cc:1515] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered\n"
+     ]
+    }
+   ],
+   "source": [
+    "import os\n",
+    "import gym\n",
+    "from stable_baselines3 import PPO"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "74b95a5c",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-09T13:58:37.348355Z",
+     "iopub.status.busy": "2024-05-09T13:58:37.347243Z",
+     "iopub.status.idle": "2024-05-09T13:58:37.355389Z",
+     "shell.execute_reply": "2024-05-09T13:58:37.352827Z"
+    },
+    "papermill": {
+     "duration": 0.019022,
+     "end_time": "2024-05-09T13:58:37.358787",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:37.339765",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "from stable_baselines3.common.vec_env import DummyVecEnv"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "ebeffb10",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-09T13:58:37.372428Z",
+     "iopub.status.busy": "2024-05-09T13:58:37.372008Z",
+     "iopub.status.idle": "2024-05-09T13:58:37.376519Z",
+     "shell.execute_reply": "2024-05-09T13:58:37.375544Z"
+    },
+    "papermill": {
+     "duration": 0.014236,
+     "end_time": "2024-05-09T13:58:37.378682",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:37.364446",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "from stable_baselines3.common.evaluation import evaluate_policy"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "0da061c2",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-09T13:58:37.390857Z",
+     "iopub.status.busy": "2024-05-09T13:58:37.390149Z",
+     "iopub.status.idle": "2024-05-09T13:58:37.394339Z",
+     "shell.execute_reply": "2024-05-09T13:58:37.393493Z"
+    },
+    "papermill": {
+     "duration": 0.012894,
+     "end_time": "2024-05-09T13:58:37.396655",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:37.383761",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "environment_name = \"CartPole-v1\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "c6eaac2d",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-09T13:58:37.409487Z",
+     "iopub.status.busy": "2024-05-09T13:58:37.408769Z",
+     "iopub.status.idle": "2024-05-09T13:58:37.429266Z",
+     "shell.execute_reply": "2024-05-09T13:58:37.428261Z"
+    },
+    "papermill": {
+     "duration": 0.029877,
+     "end_time": "2024-05-09T13:58:37.431713",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:37.401836",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "env = gym.make(environment_name)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "645d2e48",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-09T13:58:37.445160Z",
+     "iopub.status.busy": "2024-05-09T13:58:37.444401Z",
+     "iopub.status.idle": "2024-05-09T13:58:37.448815Z",
+     "shell.execute_reply": "2024-05-09T13:58:37.447813Z"
+    },
+    "papermill": {
+     "duration": 0.014365,
+     "end_time": "2024-05-09T13:58:37.451186",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:37.436821",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "# observation_space = env.observation_space\n",
+    "observation_space = env.observation_space.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "e304a5c2",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-09T13:58:37.464872Z",
+     "iopub.status.busy": "2024-05-09T13:58:37.464017Z",
+     "iopub.status.idle": "2024-05-09T13:58:37.472375Z",
+     "shell.execute_reply": "2024-05-09T13:58:37.471390Z"
+    },
+    "papermill": {
+     "duration": 0.018269,
+     "end_time": "2024-05-09T13:58:37.474671",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:37.456402",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(4,)"
+      ]
+     },
+     "execution_count": 7,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "observation_space"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 8,
+   "id": "f2e3ebf1",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-09T13:58:37.488827Z",
+     "iopub.status.busy": "2024-05-09T13:58:37.488092Z",
+     "iopub.status.idle": "2024-05-09T13:58:37.492716Z",
+     "shell.execute_reply": "2024-05-09T13:58:37.491821Z"
+    },
+    "papermill": {
+     "duration": 0.013948,
+     "end_time": "2024-05-09T13:58:37.495068",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:37.481120",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "action_space = env.action_space.n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 9,
+   "id": "b36bde08",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-09T13:58:37.507851Z",
+     "iopub.status.busy": "2024-05-09T13:58:37.507439Z",
+     "iopub.status.idle": "2024-05-09T13:58:37.513372Z",
+     "shell.execute_reply": "2024-05-09T13:58:37.512428Z"
+    },
+    "papermill": {
+     "duration": 0.014909,
+     "end_time": "2024-05-09T13:58:37.515524",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:37.500615",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "2"
+      ]
+     },
+     "execution_count": 9,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "action_space"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "2c5d3cb5",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-09T13:58:37.528569Z",
+     "iopub.status.busy": "2024-05-09T13:58:37.527546Z",
+     "iopub.status.idle": "2024-05-09T13:58:37.532549Z",
+     "shell.execute_reply": "2024-05-09T13:58:37.531672Z"
+    },
+    "papermill": {
+     "duration": 0.014054,
+     "end_time": "2024-05-09T13:58:37.535116",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:37.521062",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "observation = env.reset()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 11,
+   "id": "8838b72c",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-09T13:58:37.548442Z",
+     "iopub.status.busy": "2024-05-09T13:58:37.547785Z",
+     "iopub.status.idle": "2024-05-09T13:58:37.553944Z",
+     "shell.execute_reply": "2024-05-09T13:58:37.553048Z"
+    },
+    "papermill": {
+     "duration": 0.016161,
+     "end_time": "2024-05-09T13:58:37.556963",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:37.540802",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(array([0.01237469, 0.04690706, 0.04105479, 0.04200776], dtype=float32), {})"
+      ]
+     },
+     "execution_count": 11,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "observation"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 12,
+   "id": "11677fb2",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-09T13:58:37.570936Z",
+     "iopub.status.busy": "2024-05-09T13:58:37.570493Z",
+     "iopub.status.idle": "2024-05-09T13:58:37.575952Z",
+     "shell.execute_reply": "2024-05-09T13:58:37.574531Z"
+    },
+    "papermill": {
+     "duration": 0.016401,
+     "end_time": "2024-05-09T13:58:37.578732",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:37.562331",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "action = env.action_space.sample()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "5e031adc",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-09T13:58:37.591097Z",
+     "iopub.status.busy": "2024-05-09T13:58:37.590670Z",
+     "iopub.status.idle": "2024-05-09T13:58:37.597304Z",
+     "shell.execute_reply": "2024-05-09T13:58:37.596032Z"
+    },
+    "papermill": {
+     "duration": 0.015714,
+     "end_time": "2024-05-09T13:58:37.599749",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:37.584035",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "1"
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "action"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "8920dfc1",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-09T13:58:37.613531Z",
+     "iopub.status.busy": "2024-05-09T13:58:37.613132Z",
+     "iopub.status.idle": "2024-05-09T13:58:37.622042Z",
+     "shell.execute_reply": "2024-05-09T13:58:37.621084Z"
+    },
+    "papermill": {
+     "duration": 0.019412,
+     "end_time": "2024-05-09T13:58:37.624916",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:37.605504",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "/opt/conda/lib/python3.10/site-packages/gym/utils/passive_env_checker.py:233: DeprecationWarning: `np.bool8` is a deprecated alias for `np.bool_`.  (Deprecated NumPy 1.24)\n",
+      "  if not isinstance(terminated, (bool, np.bool8)):\n"
+     ]
+    }
+   ],
+   "source": [
+    "observation, reward,terminated, truncated , info = env.step(action)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "9622cab4",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-09T13:58:37.638062Z",
+     "iopub.status.busy": "2024-05-09T13:58:37.637676Z",
+     "iopub.status.idle": "2024-05-09T13:58:37.646459Z",
+     "shell.execute_reply": "2024-05-09T13:58:37.645211Z"
+    },
+    "papermill": {
+     "duration": 0.018424,
+     "end_time": "2024-05-09T13:58:37.648953",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:37.630529",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(array([ 0.01331283,  0.24141698,  0.04189494, -0.23744456], dtype=float32),\n",
+       " 1.0,\n",
+       " False,\n",
+       " False,\n",
+       " {})"
+      ]
+     },
+     "execution_count": 15,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "observation, reward,terminated, truncated , info"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "id": "386a3068",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-09T13:58:37.662644Z",
+     "iopub.status.busy": "2024-05-09T13:58:37.662229Z",
+     "iopub.status.idle": "2024-05-09T13:58:37.668225Z",
+     "shell.execute_reply": "2024-05-09T13:58:37.666713Z"
+    },
+    "papermill": {
+     "duration": 0.015347,
+     "end_time": "2024-05-09T13:58:37.670523",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:37.655176",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": [
+    "episodes = 10"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "c812fc1a",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-09T13:58:37.684366Z",
+     "iopub.status.busy": "2024-05-09T13:58:37.683987Z",
+     "iopub.status.idle": "2024-05-09T13:58:37.694937Z",
+     "shell.execute_reply": "2024-05-09T13:58:37.692937Z"
+    },
+    "papermill": {
+     "duration": 0.021855,
+     "end_time": "2024-05-09T13:58:37.698024",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:37.676169",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "1\n",
+      "2\n",
+      "3\n",
+      "4\n",
+      "5\n",
+      "6\n",
+      "7\n",
+      "8\n",
+      "9\n",
+      "10\n"
+     ]
+    },
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "/opt/conda/lib/python3.10/site-packages/gym/envs/classic_control/cartpole.py:211: UserWarning: \u001b[33mWARN: You are calling render method without specifying any render mode. You can specify the render_mode at initialization, e.g. gym(\"CartPole-v1\", render_mode=\"rgb_array\")\u001b[0m\n",
+      "  gym.logger.warn(\n"
+     ]
+    }
+   ],
+   "source": [
+    "for episode in range(1, episodes+1):\n",
+    "    state = env.reset()\n",
+    "    truncated = False\n",
+    "    terminated = False\n",
+    "    score = 0\n",
+    "    \n",
+    "    \n",
+    "    if not truncated or not terminated:\n",
+    "        env.render()\n",
+    "        action = env.action_space.sample()\n",
+    "        a,b,c,d,e = env.step(action)\n",
+    "        score = score + b\n",
+    "        print(episode)\n",
+    "        if episode == 1000 :\n",
+    "            print(observation, reward,terminated, truncated , info)\n",
+    "            print('Episode : {} , Score : {}, Reward : {}'.format(episode,score,b))\n",
+    "env.close()\n",
+    "        "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "id": "e8900a12",
+   "metadata": {
+    "execution": {
+     "iopub.execute_input": "2024-05-09T13:58:37.711814Z",
+     "iopub.status.busy": "2024-05-09T13:58:37.711343Z",
+     "iopub.status.idle": "2024-05-09T13:58:37.719943Z",
+     "shell.execute_reply": "2024-05-09T13:58:37.718231Z"
+    },
+    "papermill": {
+     "duration": 0.018545,
+     "end_time": "2024-05-09T13:58:37.722367",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:37.703822",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(array([ 0.03180515, -0.04807791,  0.00539095,  0.01770504], dtype=float32),\n",
+       " {})"
+      ]
+     },
+     "execution_count": 18,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "env.reset()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "072248a9",
+   "metadata": {
+    "papermill": {
+     "duration": 0.005501,
+     "end_time": "2024-05-09T13:58:37.734020",
+     "exception": false,
+     "start_time": "2024-05-09T13:58:37.728519",
+     "status": "completed"
+    },
+    "tags": []
+   },
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kaggle": {
+   "accelerator": "none",
+   "dataSources": [],
+   "dockerImageVersionId": 30698,
+   "isGpuEnabled": false,
+   "isInternetEnabled": true,
+   "language": "python",
+   "sourceType": "notebook"
+  },
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.13"
+  },
+  "papermill": {
+   "default_parameters": {},
+   "duration": 26.136697,
+   "end_time": "2024-05-09T13:58:40.489672",
+   "environment_variables": {},
+   "exception": null,
+   "input_path": "__notebook__.ipynb",
+   "output_path": "__notebook__.ipynb",
+   "parameters": {},
+   "start_time": "2024-05-09T13:58:14.352975",
+   "version": "2.5.0"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
